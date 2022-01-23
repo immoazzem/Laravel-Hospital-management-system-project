@@ -29,9 +29,9 @@
             @yield('dashboard')
             @yield('user-profile')
             @yield('user-edit')
+            @yield('department')
 
             @yield('patient')
-            @yield('department')
 
 
 

@@ -46,8 +46,7 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-users"></i> <span> Departments </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="employees.html">Departments List</a></li>
-                        <li><a href="leaves.html">Departments Add</a></li>
+                        <li><a href="{{url('admin/department')}}">Departments List</a></li>
                     </ul>
                 </li>    
                 <li class="submenu">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\frontend\FrontEndController;
 use App\Http\Controllers\backend\UserProfileController;
+use App\Http\Controllers\backend\department\DepartmentController;
 
 
 /*
@@ -34,7 +35,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('backend/dashboard');
 })->name('dashboard');
 
+// Backeend Routes
 Route::get('/logout', [SetupController::class, 'logout'] );
-
 Route::resource('/admin/user', UserProfileController::class );
+Route::resource('/admin/department', DepartmentController::class );
+
+
+
+
+// Backeend Routes
 
