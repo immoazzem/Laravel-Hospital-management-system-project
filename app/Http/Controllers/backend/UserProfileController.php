@@ -14,7 +14,7 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend/user/profile');
     }
 
     /**
@@ -57,8 +57,10 @@ class UserProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend/user/user-edit');
     }
+    
+
 
     /**
      * Update the specified resource in storage.

@@ -36,5 +36,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/logout', [SetupController::class, 'logout'] );
 
-Route::resource('/UserProfile', UserProfileController::class );
+Route::resource('/admin/user', UserProfileController::class );
 

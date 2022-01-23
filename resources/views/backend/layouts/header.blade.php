@@ -85,14 +85,14 @@
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                 <span class="user-img">
-                    <img class="rounded-circle" src="{{asset('backend/img/user.jpg')}}" width="24" alt="Admin">
+                    <img class="rounded-circle" src="{{Auth::user()->profile_photo_url}}" width="24" alt="{{Auth::user()->profile_photo_url}}">
                     <span class="status online"></span>
                 </span>
-                <span>Admin</span>
+                <span>{{Auth::user()->name}}</span>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="profile.html">My Profile</a>
-                <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                <a class="dropdown-item" href="{{url('/admin/user')}}">My Profile</a>
+                <a class="dropdown-item" href="{{ URL::to('admin/user/'.Auth::user()->id.'/edit' ) }}">Edit Profile</a>
                 <a class="dropdown-item" href="settings.html">Settings</a>
                 <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
             </div>
