@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\frontend\FrontEndController;
+use App\Http\Controllers\backend\UserProfileController;
 
 
 /*
@@ -34,4 +35,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/logout', [SetupController::class, 'logout'] );
+
+Route::resource('/UserProfile', UserProfileController::class );
 
