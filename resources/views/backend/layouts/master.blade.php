@@ -40,8 +40,7 @@
                 </div>
             </div>
         </div>
-    </div><hr><hr>
-
+    </div>
 
 
 
@@ -49,11 +48,15 @@
             @yield('dashboard')
             @yield('user-profile')
             @yield('user-edit')
+            @yield('department')
             @yield('edit-department')
             @yield('floor')
             @yield('edit-floor')
             @yield('bedcategory')
             @yield('edit-bedcategory')
+            
+            @yield('bed')
+            @yield('edit-bed')
 
             @yield('patient')
 
@@ -92,6 +95,14 @@
              });
          });
      
+   </script>
+    {{-- Data Table  --}}
+    <script type="text/javascript">
+ 
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        } );
+
    </script>
 
 </body>

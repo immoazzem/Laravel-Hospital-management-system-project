@@ -54,7 +54,7 @@
                     <ul style="display: none;">            
                         <li><a href="{{Route('floor.index')}}">Floor</a></li>
                         <li><a href="{{Route('bedcategory.index')}}">Bed Category</a></li>
-                        <li><a href="employees.html">Bed List</a></li>
+                        <li><a href="{{Route('bed.index')}}">Bed List</a></li>
                         <li><a href="employees.html">Bed Add</a></li>
                     </ul>
                 </li>            

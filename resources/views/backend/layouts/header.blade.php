@@ -85,7 +85,7 @@
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                 <span class="user-img">
-                    <img class="rounded-circle" src="{{Auth::user()->profile_photo_url}}" width="24" alt="{{Auth::user()->profile_photo_url}}">
+                    <img class="rounded-circle" src="{{Auth::user()->profile_photo_url}}" width="24" alt="{{Auth::user()->name}}">
                     <span class="status online"></span>
                 </span>
                 <span>{{Auth::user()->name}}</span>

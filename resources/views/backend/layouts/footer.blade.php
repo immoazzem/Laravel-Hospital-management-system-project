@@ -15,3 +15,10 @@
  {{-- Sweet alart CDN --}}
  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> --}}
  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+ {{-- Data table --}}
+ {{-- <script src="{{ asset('backend/datatable/datatables.min.js') }}"></script>
+ <script src="{{ asset('backend/datatable/data-table.js') }}"></script> --}}
+ <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+ <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+ {{-- Data table --}}

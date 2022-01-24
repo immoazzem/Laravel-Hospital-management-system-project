@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\UserProfileController;
 use App\Http\Controllers\backend\setup\DepartmentController;
 use App\Http\Controllers\backend\setup\FloorController;
 use App\Http\Controllers\backend\setup\BedCategoryController;
+use App\Http\Controllers\backend\setup\BedController;
 
 
 /*
@@ -46,6 +47,7 @@ Route::resource('/admin/user', UserProfileController::class );
 Route::resource('/admin/department', DepartmentController::class );
 Route::resource('/admin/floor', FloorController::class );
 Route::resource('/admin/bedcategory', BedCategoryController::class );
+Route::resource('/admin/bed', BedController::class );
 
 
 
