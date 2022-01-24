@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\frontend\FrontEndController;
 use App\Http\Controllers\backend\UserProfileController;
-use App\Http\Controllers\backend\department\DepartmentController;
+use App\Http\Controllers\backend\setup\DepartmentController;
+use App\Http\Controllers\backend\setup\FloorController;
 
 
 /*
@@ -39,6 +40,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/logout', [SetupController::class, 'logout'] );
 Route::resource('/admin/user', UserProfileController::class );
 Route::resource('/admin/department', DepartmentController::class );
+Route::resource('/admin/floor', FloorController::class );
 
 
 

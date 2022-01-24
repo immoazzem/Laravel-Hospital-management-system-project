@@ -45,7 +45,7 @@
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item"
                                                     href="{{ URL::to('admin/department/' . $Department->id . '/edit') }}"><i
-                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                        class="fa fa-pencil m-r-5 btn-outline-primary btn"></i> Edit</a>
                                                 <a class="dropdown-item" href="#">
                                                     <form action="{{ route('department.destroy', $Department->id) }}"
                                                         method="POST">

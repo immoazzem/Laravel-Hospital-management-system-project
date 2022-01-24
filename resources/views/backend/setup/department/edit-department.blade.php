@@ -1,5 +1,5 @@
 @extends('backend/layouts/master')
-@section('department')
+@section('edit-department')
 
     <div class="content">
         <div class="row">
@@ -58,7 +58,7 @@
                                 @enderror
                             </div>
                             <div class="m-t-20 text-center">
-                                <button type="submit" class="btn btn-primary submit-btn">Update Department</button>
+                                <button type="submit" class="btn btn-primary submit-btn">Update Department</button>&nbsp; Delete
                             </div>
                         </form>
                         </p>

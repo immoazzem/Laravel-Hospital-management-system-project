@@ -52,7 +52,7 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-bed"></i> <span> Bed Management </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">            
-                        <li><a href="employees.html">Add Floor</a></li>
+                        <li><a href="{{Route('floor.index')}}">Floor</a></li>
                         <li><a href="employees.html">Bed Category</a></li>
                         <li><a href="employees.html">Bed List</a></li>
                         <li><a href="employees.html">Bed Add</a></li>
