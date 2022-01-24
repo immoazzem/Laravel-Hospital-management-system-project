@@ -75,7 +75,8 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $EditDepartment = Department::find($id);
+        return view('backend/setup/department/edit-department', compact('EditDepartment'));
     }
 
     /**
@@ -87,7 +88,23 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'dept_name' => 'required|string|max:100',           
+            'dept_details' => 'required|max:200',           
+            'dept_status' => 'required|string',           
+        ]);
+
+        // $info = array(
+        //     'message' => "Holidays Class Added successfull",
+        //     'alert-type' => 'success'
+        // );
+
+        $UpdateDepartment = Department::find($id);
+        $UpdateDepartment->dept_name = $request->dept_name; 
+        $UpdateDepartment->dept_details = $request->dept_details; 
+        $UpdateDepartment->dept_status = $request->dept_status; 
+        $UpdateDepartment->save();
+        return redirect('/admin/department')->with('success', 'Department Update successfully.');
     }
 
     /**
@@ -98,6 +115,9 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $DeleteDepartment = Department::find($id);
+        $DeleteDepartment->delete();
+        return redirect('/admin/department')->with('success', 'Department Delete successfully.');
+
     }
 }
