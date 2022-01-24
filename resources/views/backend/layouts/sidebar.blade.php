@@ -4,7 +4,7 @@
             <ul>
                 <li class="menu-title">Main</li>
                 <li class="active">
-                    <a href="index-2.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                    <a href="{{url('/dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                 </li>
                 
                 <li class="submenu">
@@ -53,7 +53,7 @@
                     <a href="#"><i class="fa fa-bed"></i> <span> Bed Management </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">            
                         <li><a href="{{Route('floor.index')}}">Floor</a></li>
-                        <li><a href="employees.html">Bed Category</a></li>
+                        <li><a href="{{Route('bedcategory.index')}}">Bed Category</a></li>
                         <li><a href="employees.html">Bed List</a></li>
                         <li><a href="employees.html">Bed Add</a></li>
                     </ul>

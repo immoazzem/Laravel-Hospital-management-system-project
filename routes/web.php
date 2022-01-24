@@ -6,6 +6,7 @@ use App\Http\Controllers\frontend\FrontEndController;
 use App\Http\Controllers\backend\UserProfileController;
 use App\Http\Controllers\backend\setup\DepartmentController;
 use App\Http\Controllers\backend\setup\FloorController;
+use App\Http\Controllers\backend\setup\BedCategoryController;
 
 
 /*
@@ -31,6 +32,9 @@ Route::get('/', [FrontEndController::class, 'index'] );
 // Route::get('/login', function () {
 //     return view('auth/login');
 // });
+Route::get('/admin', function () {
+    return view('backend/dashboard');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('backend/dashboard');
@@ -41,6 +45,7 @@ Route::get('/logout', [SetupController::class, 'logout'] );
 Route::resource('/admin/user', UserProfileController::class );
 Route::resource('/admin/department', DepartmentController::class );
 Route::resource('/admin/floor', FloorController::class );
+Route::resource('/admin/bedcategory', BedCategoryController::class );
 
 
 
