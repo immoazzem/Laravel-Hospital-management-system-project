@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models\backend;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+
+class OutPatient extends Model
+{
+    use HasFactory;
+    protected $primaryKey = 'id';
+    protected $fillable = ['out_p_name', 'out_p_father_name', 'out_p_gender', 'out_p_age', 'out_p_phone', 'out_p_blood', 'out_p_height', 'out_p_weight', 'out_p_bp', 'out_p_symptoms', 'out_p_address'];
+
+
+}

@@ -32,8 +32,8 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-user-md"></i> <span> Patients </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="employees.html">Patients List</a></li>
-                        <li><a href="leaves.html">Patients Add</a></li>
+                        <li><a href="{{ Route('inpatient.index') }}">In Patients</a></li>
+                        <li><a href="{{ Route('outpatient.index') }}">Out Patients</a></li>
                     </ul>
                 </li>    
                 <li class="submenu">
