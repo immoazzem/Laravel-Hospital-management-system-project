@@ -41,8 +41,8 @@
                                     <label>Gender</label>
                                     <div class="form-control">
 
-                                        <input name="out_p_gender" type="radio" value="male">Male
-                                        <input name="out_p_gender" type="radio" value="female">Female
+                                        <input name="out_p_gender" type="radio" value="male"> &nbsp; Male &nbsp;
+                                        <input name="out_p_gender" type="radio" value="female"> &nbsp; Female
                                     </div>
                                     @error('out_p_gender')
                                         <div class="alert alert-danger">{{ $message }}</div>

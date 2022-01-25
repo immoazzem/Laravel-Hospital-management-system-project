@@ -41,7 +41,7 @@
                             <tr> 
 
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $OutPatient->out_p_s }}</td>
+                                <td>{{ $OutPatient->out_p_id }}</td>
                                 <td>{{ $OutPatient->out_p_name }}</td>
                                 <td>{{ $OutPatient->out_p_father_name }}</td>
                                 <td>{{ $OutPatient->out_p_gender }}</td>

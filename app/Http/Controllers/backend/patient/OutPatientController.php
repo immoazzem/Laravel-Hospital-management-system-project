@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\backend\OutPatient;
 use Illuminate\Support\Facades\DB;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class OutPatientController extends Controller
 {
@@ -54,16 +55,12 @@ class OutPatientController extends Controller
         //     'alert-type' => 'success'
         // );
 
+       // $id = IdGenerator::generate(['table' => 'out_patients', 'field'=>'out_p_id', 'length' => 8, 'prefix' =>'OUT-PET-']);
 
-           $now =  now();
-           $Year = "deert";
-
+        $last = 1;
         $last = DB::table('out_patients')->latest()->first();
-        if($last == NULL){
-            $last = 1;
-        }
+       
         $OutPatient = new OutPatient;
-        $OutPatient->out_p_id = 'OUTPAT'. '-' . $last++ ; 
         $OutPatient->out_p_name = $request->out_p_name; 
         $OutPatient->out_p_father_name = $request->out_p_father_name; 
         $OutPatient->out_p_gender = $request->out_p_gender; 
@@ -76,7 +73,7 @@ class OutPatientController extends Controller
         $OutPatient->out_p_symptoms = $request->out_p_symptoms; 
         $OutPatient->out_p_address = $request->out_p_address; 
         $OutPatient->save();
-        return redirect('admin/outpatient')->with('success', 'Medicine created successfully.');
+        return redirect('admin/outpatient')->with('success', 'OutPatient created successfully.');
     }
 
     /**
@@ -100,8 +97,8 @@ class OutPatientController extends Controller
     {
         // $MedicineCompanys = MedicineCompany::all();
         // $MedicineGroups =  MedicineGroup::all();
-        $EditMedicine = OutPatient::find($id);    
-        return view('backend/medicine/medicine/edit-medicine', compact('EditMedicine'));
+        $EditOutPatient = OutPatient::find($id);    
+        return view('backend/patient/edit-outpatient', compact('EditOutPatient'));
     }
 
     /**
@@ -114,11 +111,14 @@ class OutPatientController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string',                            
-            'price' => 'required|integer',                            
-            'mg' => 'required|integer',                            
-            'group' => 'required',                            
-            'company' => 'required',                             
+            'out_p_name'    => 'required|string|max:50',
+	    	'out_p_age'     => 'required|integer',
+	    	'out_p_address' => 'required',
+	    	'out_p_phone'   => 'required',
+	    	'out_p_gender'     => 'required',
+	    	'out_p_blood'   => 'required',                            
+	    	'out_p_symptoms'   => 'string|max:200',                            
+	    	'out_p_address'   => 'string|max:150',                            
         ]);
 
         // $info = array(
@@ -126,14 +126,20 @@ class OutPatientController extends Controller
         //     'alert-type' => 'success'
         // );
 
-        $UpdateMedicine = OutPatient::find($id);
-        $UpdateMedicine->name =  $request->name; 
-        $UpdateMedicine->price = $request->price; 
-        $UpdateMedicine->mg = $request->mg; 
-        $UpdateMedicine->group = $request->group; 
-        $UpdateMedicine->company = $request->company; 
-        $UpdateMedicine->save();
-        return redirect('admin/outpatient')->with('success', 'Medicine Update successfully.');
+        $UpdateOutPatient = OutPatient::find($id);
+        $UpdateOutPatient->out_p_name = $request->out_p_name; 
+        $UpdateOutPatient->out_p_father_name = $request->out_p_father_name; 
+        $UpdateOutPatient->out_p_gender = $request->out_p_gender; 
+        $UpdateOutPatient->out_p_age = $request->out_p_age; 
+        $UpdateOutPatient->out_p_phone = $request->out_p_phone; 
+        $UpdateOutPatient->out_p_blood = $request->out_p_blood; 
+        $UpdateOutPatient->out_p_height = $request->out_p_height; 
+        $UpdateOutPatient->out_p_weight = $request->out_p_weight; 
+        $UpdateOutPatient->out_p_bp = $request->out_p_bp; 
+        $UpdateOutPatient->out_p_symptoms = $request->out_p_symptoms; 
+        $UpdateOutPatient->out_p_address = $request->out_p_address; 
+        $UpdateOutPatient->save();
+        return redirect('admin/outpatient')->with('success', 'OutPatient Update successfully.');
     }
 
     /**
@@ -144,9 +150,9 @@ class OutPatientController extends Controller
      */
     public function destroy($id)
     {
-        $DeleteMedicine = OutPatient::find($id);
-        $DeleteMedicine->delete();
-        return redirect('admin/outpatient')->with('success', 'Medicine Delete successfully.');
+        $DeleteOutPatient = OutPatient::find($id);
+        $DeleteOutPatient->delete();
+        return redirect('admin/outpatient')->with('success', 'OutPatient Delete successfully.');
 
     }
 }
