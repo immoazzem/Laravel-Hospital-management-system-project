@@ -123,10 +123,9 @@
                     <a href="#"><i class="fa fa-medkit"></i> <span> Medicine </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{Route('medicinegroup.index')}}">Medicine Group</a></li>
-                        <li><a href="{{Route('medicinecompany.index')}}">Medicine Comapany</a></li>
-                       
-                        <li><a href="employees.html">Medicine List</a></li>
-                        <li><a href="leaves.html">Medicine Add</a></li>
+                        <li><a href="{{Route('medicinecompany.index')}}">Medicine Comapany</a></li>                    
+                        <li><a href="{{Route('medicine.index')}}">Medicine List</a></li>                    
+
                     </ul>
                 </li>                                                        
                 <li class="menu-title">Extras</li>                                                                 

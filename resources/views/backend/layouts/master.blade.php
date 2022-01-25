@@ -61,6 +61,8 @@
             @yield('edit-medicinegroup')
             @yield('medicinecompany')
             @yield('edit-medicinecompany')
+            @yield('medicine')
+            @yield('edit-medicine')
 
             @yield('patient')
 
