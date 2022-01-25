@@ -1,5 +1,33 @@
 php artisan migrate:rollback --step=1 
-
+======================
 php artisan migrate:rollback --path=Modules/YourModule/database/migrations/2020_05_15_xxxxxx_create_your_table.php
-
+=============
 @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf
+==================
+use Haruncpi\LaravelIdGenerator\IdGenerator;  
+public static function boot()
+	{
+	    parent::boot();
+	    static::saving(function ($model) {
+	        $model->out_p_id = IdGenerator::generate(['table' => 'out_patients', 'field'=>'out_p_id', 'length' => 10, 'prefix' => 'OUT-PAT-']);
+	    });
+	}
+
+=================
+ if ($request->file('photo')) {
+        $photoname = $request->file('photo')->getClientOriginalName();
+        $request->photo->storeAs('public/images', $photoname);
+        $User->profile_photo_path = $photoname; 
+       }
+ if ($request->file('photo')) {
+
+        $path = storage_path().'/app/public/images/';
+
+        $file_old = $path . $OldData->profile_photo_path;
+        unlink($file_old);
+        $photoname = $request->file('photo')->getClientOriginalName();
+        $request->photo->storeAs('public/images', $photoname);
+        $OldData->profile_photo_path = $photoname; 
+       }
+       $OldData->update();
+===============

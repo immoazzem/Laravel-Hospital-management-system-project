@@ -30,17 +30,16 @@
                 </li>    
                 <li class="menu-title">Setup Management</li> 
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-user-md"></i> <span> Patients </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="fa fa-user-plus"></i><span> Patients </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ Route('inpatient.index') }}">In Patients</a></li>
                         <li><a href="{{ Route('outpatient.index') }}">Out Patients</a></li>
                     </ul>
                 </li>    
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-user-plus"></i> <span> Doctors </span> <span class="menu-arrow"></span></a>
+                    <a href="#"> <i class="fa fa-user-md"></i> <span> Doctors </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="employees.html">Doctors List</a></li>
-                        <li><a href="leaves.html">Doctors Add</a></li>
+                        <li><a href="{{Route('doctor.index')}}">Doctors List</a></li>
                     </ul>
                 </li>          
                 <li class="submenu">

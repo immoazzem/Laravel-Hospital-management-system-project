@@ -69,6 +69,9 @@
             @yield('inpatient')
             @yield('edit-inpatient')
             @yield('add-inpatient')
+            @yield('doctor')
+            @yield('edit-doctor')
+            @yield('add-doctor')
 
             @yield('patient')
 

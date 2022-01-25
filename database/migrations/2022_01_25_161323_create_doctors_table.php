@@ -14,7 +14,20 @@ class CreateDoctorsTable extends Migration
     public function up()
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('doc_id');
+            $table->string('doc_name', 110);
+            $table->string('doc_specialist', 110);
+            $table->string('doc_education', 110);
+            $table->string('doc_phone', 45);
+            $table->string('doc_address', 110);
+            $table->string('doc_email', 110);
+            $table->string('doc_password', 110);
+            $table->string('doc_gender', 110);
+            $table->string('doc_blood', 110);
+            $table->string('doc_img', 110);
+            $table->unsignedBigInteger('doc_dept_id');
+            $table->foreign('doc_dept_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });
     }
