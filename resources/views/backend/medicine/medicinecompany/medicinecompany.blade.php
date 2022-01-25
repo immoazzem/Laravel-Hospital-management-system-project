@@ -1,10 +1,10 @@
 @extends('backend/layouts/master')
-@section('floor')
+@section('medicinecompany')
 
     <div class="content">
         <div class="row">
             <div class="col-sm-5 col-5">
-                <h4 class="page-title">Floors</h4>
+                <h4 class="page-title">Medicine company</h4>
             </div>
         </div>
         <div class="row">
@@ -17,25 +17,25 @@
                         <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Floors Name</th>
+                                <th>Medicine company Name</th>
                                 <th>Action</th>                               
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($Floors as $Floor)
+                            @foreach ($MedicineCompanys as $MedicineCompany)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $Floor->name }}</td>
+                                <td>{{ $MedicineCompany->name }}</td>
                                 <td class="text-right">
                                     <div class="dropdown dropdown-action">
                                         <a href="#" class="action-icon dropdown-toggle " data-toggle="dropdown"
                                             aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item"
-                                                href="{{ URL::to('admin/floor/' . $Floor->id . '/edit') }}"><i
+                                                href="{{ URL::to('admin/medicinecompany/' . $MedicineCompany->id . '/edit') }}"><i
                                                     class="fa fa-pencil m-r-5 btn-outline-primary btn"></i> Edit</a>
                                             <a class="dropdown-item" href="#">
-                                                <form action="{{ route('floor.destroy', $Floor->id) }}" method="POST">
+                                                <form action="{{ route('medicinecompany.destroy', $MedicineCompany->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
 
@@ -55,7 +55,7 @@
                         <tfoot>
                             <tr>
                                 <th>SL</th>
-                                <th>Floors Name</th>
+                                <th>Medicine company Name</th>
                                 <th>Action</th> 
                             </tr>
                         </tfoot>
@@ -66,19 +66,19 @@
                 <div class="card text-left">
                     <img class="card-img-top" src="holder.js/100px180/" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Floor Add Form</h4>
+                        <h4 class="card-title">Medicine company Add Form</h4>
                         <p class="card-text">
-                        <form action="{{ route('floor.store') }}" method="post">
+                        <form action="{{ route('medicinecompany.store') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label>Floor Name</label>
+                                <label>Medicine company Name</label>
                                 <input class="form-control" name="name" type="text">
                                 @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="m-t-20 text-center">
-                                <button type="submit" class="btn btn-primary submit-btn">Create Floor</button>
+                                <button type="submit" class="btn btn-primary submit-btn">Create Medicine company</button>
                             </div>
                         </form>
                         </p>

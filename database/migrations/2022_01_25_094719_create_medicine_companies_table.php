@@ -15,6 +15,7 @@ class CreateMedicineCompaniesTable extends Migration
     {
         Schema::create('medicine_companies', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }

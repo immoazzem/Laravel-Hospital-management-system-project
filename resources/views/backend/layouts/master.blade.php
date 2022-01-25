@@ -23,10 +23,10 @@
                   <!-- Breadcamp (Page header) -->
     <div class="container content-header " style="background-color: #dde6ed">
         <div class="row d-flex align-items-center ">
-            <div class="col-md-2 mt-3 mr-auto font-weight-bold" style="border-right: 5px solid red;">
+            <div class="col-md-3 font-weight-bold" style="border-right: 5px solid red;">
                 <h2 class="page-title text-danger">{{ strtoupper(collect(request()->segments())->last())}}</h2>              
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="d-inline-block align-items-center">
                     <a href="/dashboard"><i class="fa fa-dashboard"></i></a> >
                     <?php $link = ''; ?>
@@ -59,6 +59,8 @@
             @yield('edit-bed')
             @yield('medicinegroup')
             @yield('edit-medicinegroup')
+            @yield('medicinecompany')
+            @yield('edit-medicinecompany')
 
             @yield('patient')
 

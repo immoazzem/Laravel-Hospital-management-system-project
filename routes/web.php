@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\setup\FloorController;
 use App\Http\Controllers\backend\setup\BedCategoryController;
 use App\Http\Controllers\backend\setup\BedController;
 use App\Http\Controllers\backend\medicine\MedicineGroupController;
+use App\Http\Controllers\backend\medicine\MedicineCompanyController;
 
 
 /*
@@ -50,6 +51,7 @@ Route::resource('/admin/floor', FloorController::class );
 Route::resource('/admin/bedcategory', BedCategoryController::class );
 Route::resource('/admin/bed', BedController::class );
 Route::resource('/admin/medicinegroup', MedicineGroupController::class );
+Route::resource('/admin/medicinecompany', MedicineCompanyController::class );
 
 
 
