@@ -55,7 +55,6 @@
                         <li><a href="{{Route('floor.index')}}">Floor</a></li>
                         <li><a href="{{Route('bedcategory.index')}}">Bed Category</a></li>
                         <li><a href="{{Route('bed.index')}}">Bed List</a></li>
-                        <li><a href="employees.html">Bed Add</a></li>
                     </ul>
                 </li>            
                 <li class="menu-title">Accounts Management</li>       
@@ -123,7 +122,7 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-medkit"></i> <span> Medicine </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="employees.html">Medicine Group</a></li>
+                        <li><a href="{{Route('medicinegroup.index')}}">Medicine Group</a></li>
                         <li><a href="employees.html">Medicine Company</a></li>
                         <li><a href="employees.html">Medicine List</a></li>
                         <li><a href="leaves.html">Medicine Add</a></li>

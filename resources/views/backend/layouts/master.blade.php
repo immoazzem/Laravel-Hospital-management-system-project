@@ -57,6 +57,8 @@
             
             @yield('bed')
             @yield('edit-bed')
+            @yield('medicinegroup')
+            @yield('edit-medicinegroup')
 
             @yield('patient')
 
