@@ -48,7 +48,13 @@
                                     <td>{{ $Doctor->doc_img }}</td>
                                     <td>{{ $Doctor->doc_phone }}</td>
                                     <td>{{ $Doctor->doc_email }}</td>
-                                    <td>{{ $Doctor->doc_dept_id }}</td>
+                                    <td>
+                                        @php
+                                    
+                                            $Department= collect($Departments)->where('id', $Doctor->doc_dept_id )->first()
+                                        @endphp 
+                                        {{$Department->dept_name}}
+                                    </td>
                                     <td>{{ $Doctor->doc_gender }}</td>                                  
                                     <td>{{ $Doctor->doc_blood }}</td>                    
                                     <td>

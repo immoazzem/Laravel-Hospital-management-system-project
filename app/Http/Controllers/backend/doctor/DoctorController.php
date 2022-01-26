@@ -17,10 +17,11 @@ class DoctorController extends Controller
      */
     public function index()
     {
+        $Departments = Department::all();
 
         $Doctors = Doctors::all();
         //$decrypt= Doctors::decrypt($Doctors->doc_password); 
-        return view('backend/doctor/doctor', compact('Doctors'));
+        return view('backend/doctor/doctor', compact('Doctors', 'Departments'));
     }
 
     /**

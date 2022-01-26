@@ -1,4 +1,6 @@
 php artisan migrate:rollback --step=1 
+==============
+$loop->iteration
 ======================
 php artisan migrate:rollback --path=Modules/YourModule/database/migrations/2020_05_15_xxxxxx_create_your_table.php
 =============

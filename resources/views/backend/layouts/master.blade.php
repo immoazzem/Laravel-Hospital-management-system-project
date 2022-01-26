@@ -72,7 +72,9 @@
             @yield('doctor')
             @yield('edit-doctor')
             @yield('add-doctor')
-
+            @yield('doctorschedule')
+            @yield('edit-doctorschedule')
+            
             @yield('patient')
 
 

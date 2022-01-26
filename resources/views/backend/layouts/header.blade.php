@@ -1,7 +1,7 @@
 <div class="header">
     <div class="header-left">
         <a href="index-2.html" class="logo">
-            <img src="{{ asset('backend/img/logo.png') }}" width="35" height="35" alt=""> <span>Preclinic</span>
+            <img src="{{ asset('backend/img/logo.png') }}" width="35" height="35" alt=""> <span>Islam Yearul</span>
         </a>
     </div>
     <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>

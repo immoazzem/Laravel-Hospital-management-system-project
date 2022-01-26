@@ -13,6 +13,7 @@ use App\Http\Controllers\backend\medicine\MedicineCompanyController;
 use App\Http\Controllers\backend\medicine\MedicineController;
 use App\Http\Controllers\backend\patient\OutPatientController;
 use App\Http\Controllers\backend\doctor\DoctorController;
+use App\Http\Controllers\backend\doctor\DoctorScheduleController;
 
 
 /*
@@ -59,6 +60,7 @@ Route::resource('/admin/medicine', MedicineController::class );
 Route::resource('/admin/outpatient', OutPatientController::class );
 Route::resource('/admin/inpatient', OutPatientController::class );
 Route::resource('/admin/doctor', DoctorController::class );
+Route::resource('/admin/doctorschedule', DoctorScheduleController::class );
 
 
 

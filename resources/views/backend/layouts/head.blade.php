@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/img/favicon.ico') }}">
 
-    <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+    <title>Hospital Management Sytem Project by Yearul</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/font-awesome.min.css') }}">

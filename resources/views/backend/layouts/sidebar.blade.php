@@ -10,7 +10,7 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-medkit"></i> <span>Doctor Schedule</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">            
-                        <li><a href="employees.html">Doctor Schedule List</a></li>
+                        <li><a href="{{ Route('doctorschedule.index') }}">Doctor Schedule List</a></li>
                     </ul>
                 </li>    
                 <li class="submenu">
