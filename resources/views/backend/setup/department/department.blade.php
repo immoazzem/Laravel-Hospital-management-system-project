@@ -33,8 +33,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $Department->dept_name }}</td>
                                     <td>{{ $Department->dept_details }}</td>
-                                    <td><span
-                                            class="custom-badge @if ($Department->dept_status == 'active') ? status-green @else status-red @endif">{{ $Department->dept_status }}</span>
+                                    <td>
+                                        <span class="custom-badge @if ($Department->dept_status == 'active') ? status-green @else status-red @endif">{{ $Department->dept_status }}</span>
                                     </td>
 
                                     {{-- <td><span class="custom-badge status-green">Active</span></td> --}}

@@ -3,7 +3,9 @@ php artisan migrate:rollback --step=1
 php artisan migrate:rollback --path=Modules/YourModule/database/migrations/2020_05_15_xxxxxx_create_your_table.php
 =============
 @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf
+@if ( $Doctor->doc_status  == 'active') ? status-green @else status-red @endif
 ==================
+composer require haruncpi/laravel-id-generator
 use Haruncpi\LaravelIdGenerator\IdGenerator;  
 public static function boot()
 	{
@@ -31,3 +33,5 @@ public static function boot()
        }
        $OldData->update();
 ===============
+'nullable|mimes:jpg,jpeg,png|max:2048'
+===========

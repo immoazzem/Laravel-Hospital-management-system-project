@@ -31,6 +31,7 @@
                                 <th>Department</th>
                                 <th>Gander</th>
                                 <th>Blood</th>
+                                <th>Status</th>
                                 <th>Address</th>
                                 <th>Password</th>
                                 <th>Action</th>
@@ -50,7 +51,11 @@
                                     <td>{{ $Doctor->doc_dept_id }}</td>
                                     <td>{{ $Doctor->doc_gender }}</td>                                  
                                     <td>{{ $Doctor->doc_blood }}</td>                    
+                                    <td>
+                                        <span class="custom-badge @if ( $Doctor->doc_status  == 'active') ? status-green @else status-red @endif">{{  $Doctor->doc_status }}</span>
+                                    </td>                                        
                                     <td>{{ $Doctor->doc_address }}</td>
+                                    <td>{{ $Doctor->doc_password }}</td>
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle " data-toggle="dropdown"
@@ -91,6 +96,7 @@
                                 <th>Department</th>
                                 <th>Gander</th>
                                 <th>Blood</th>
+                                <th>Status</th>
                                 <th>Address</th>
                                 <th>Password</th>
                                 <th>Action</th>

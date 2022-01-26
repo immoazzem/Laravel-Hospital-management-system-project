@@ -122,6 +122,18 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
+                                    <label>Status</label>
+                                    <div class="form-control">
+                                        <input name="doc_status" type="radio" value="active"> &nbsp; Active &nbsp;
+                                        <input name="doc_status" type="radio" value="inactive"> &nbsp; Inactive
+                                    </div>
+                                    @error('doc_status')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
                                     <label>Address</label>
                                     <textarea  class="form-control" name="doc_address" id="" cols="30" rows="3" required></textarea>
                                     @error('doc_address')

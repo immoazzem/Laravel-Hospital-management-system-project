@@ -7,7 +7,7 @@
                 <h4 class="page-title">Edit Out Patient</h4>
             </div>
             <div class="col-sm-7 col-7 text-right m-b-30">
-                <a href="{{ route('outpatient.index') }}" class="btn btn-primary btn-rounded"><i class="fa fa-show"></i>
+                <a href="{{ route('doctor.index') }}" class="btn btn-primary btn-rounded"><i class="fa fa-show"></i>
                     Show Out Patient</a>
             </div>
         </div>
@@ -18,102 +18,117 @@
                     <div class="card-body">
                         <h4 class="card-title">Out Patient Edit Form</h4>
                         <p class="card-text">
-                        <form action="{{ route('outpatient.update', $EditOutPatient->id) }}" method="post">
+                        <form action="{{ route('doctor.update', $EditDoctors->id) }}" method="post" enctype="multipart/form-data"> 
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label>Name</label>
-                                    <input class="form-control" value="{{$EditOutPatient->out_p_name}}" name="out_p_name" type="text" required>
-                                    @error('out_p_name')
+                                    <input class="form-control" value="{{$EditDoctors->doc_name}}" name="doc_name" type="text" required>
+                                    @error('doc_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Father Name</label>
-                                    <input class="form-control" value="{{$EditOutPatient->out_p_father_name}}" name="out_p_father_name" type="text" required>
-                                    @error('out_p_father_name')
+                                    <label>Phone</label>
+                                    <input class="form-control" value="{{$EditDoctors->doc_phone}}" name="doc_phone" type="number" required>
+                                    @error('doc_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
+                                   
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-6 ">
-                                    <label>Gender</label>
-                                    <div class="form-control">
-
-                                        <input name="out_p_gender" type="radio" value="male" @if($EditOutPatient->out_p_gender == 'male')? Checked : '' @endIf> &nbsp; Male &nbsp;
-                                        <input name="out_p_gender" type="radio" value="female" @if($EditOutPatient->out_p_gender == 'female')? checked : '' @endIf> &nbsp; Female
-                                    </div>
-                                    @error('out_p_gender')
+                                    <label>Specialist</label>
+                                    <input class="form-control" value="{{$EditDoctors->doc_specialist}}" name="doc_specialist" type="text" required>
+                                    @error('doc_specialist')
                                         <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                    @enderror                                  
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Age</label>
-                                    <input class="form-control" value="{{$EditOutPatient->out_p_age}}" name="out_p_age" type="number" required>
-                                    @error('out_p_age')
+                                    <label>Education</label>
+                                    <input class="form-control" value="{{$EditDoctors->doc_education}}" name="doc_education" type="text" required>
+                                    @error('doc_education')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-6">
-                                    <label>Phone</label>
-                                    <input class="form-control" value="{{$EditOutPatient->out_p_phone}}" name="out_p_phone" type="number" required>
-                                    @error('out_p_name')
+                                    <label>Email </label>
+                                    <input class="form-control" value="{{$EditDoctors->doc_email}}" name="doc_email" type="email" required>
+                                    @error('doc_email')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Password</label>
+                                    <input class="form-control" value="{{$EditDoctors->doc_password}}" name="doc_password" type="password" required>
+                                    @error('doc_password')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label>Gender</label>
+                                    <div class="form-control">
+                                        <input name="doc_gender" type="radio" value="male" @if($EditDoctors->doc_gender == 'male')? checked : '' @endIf> &nbsp; Male &nbsp;
+                                        <input name="doc_gender" type="radio" value="female" @if($EditDoctors->doc_gender == 'female')? checked : '' @endIf> &nbsp; Female
+                                    </div>
+                                    @error('doc_gender')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label>Blood Group</label>
-                                    <select name="out_p_blood" id=""  class="form-control" required>
+                                    <select name="doc_blood" id=""  class="form-control" required>
                                         <option value="" selected disabled>--Select Blood--</option>
-                                        <option value="A+" @if($EditOutPatient->out_p_blood == 'A+')? selected : '' @endIf> A+ </option>
-			                            <option value="A-" @if($EditOutPatient->out_p_blood == 'A-')? selected : '' @endIf> A- </option>
-			                             <option value="B+" @if($EditOutPatient->out_p_blood == 'B+')? selected : '' @endIf> B+ </option>
-			                             <option value="B-" @if($EditOutPatient->out_p_blood == 'B-')? selected : '' @endIf> B- </option>
-			                             <option value="AB+" @if($EditOutPatient->out_p_blood == 'AB+')? selected : '' @endIf> AB+ </option>
-			                             <option value="AB-" @if($EditOutPatient->out_p_blood == 'AB-')? selected : '' @endIf> AB- </option>
-			                             <option value="O+" @if($EditOutPatient->out_p_blood == 'O+')? selected : '' @endIf> O+ </option>
-			                             <option value="O-" @if($EditOutPatient->out_p_blood == 'O-')? selected : '' @endIf> O- </option>
+                                        <option value="A+" @if($EditDoctors->doc_blood == 'A+')? selected : '' @endIf> A+ </option>
+			                            <option value="A-" @if($EditDoctors->doc_blood == 'A-')? selected : '' @endIf> A- </option>
+			                             <option value="B+" @if($EditDoctors->doc_blood == 'B+')? selected : '' @endIf> B+ </option>
+			                             <option value="B-" @if($EditDoctors->doc_blood == 'B-')? selected : '' @endIf> B- </option>
+			                             <option value="AB+" @if($EditDoctors->doc_blood == 'AB+')? selected : '' @endIf> AB+ </option>
+			                             <option value="AB-" @if($EditDoctors->doc_blood == 'AB-')? selected : '' @endIf> AB- </option>
+			                             <option value="O+" @if($EditDoctors->doc_blood == 'O+')? selected : '' @endIf> O+ </option>
+			                             <option value="O-" @if($EditDoctors->doc_blood == 'O-')? selected : '' @endIf> O- </option>
                                     </select>                                  
-                                    @error('out_p_blood')
+                                    @error('doc_blood')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            
+                            <div class="row">
                                 <div class="col-md-6">
-                                    <label>Height(Cm) </label>
-                                    <input class="form-control" value="{{$EditOutPatient->out_p_height}}" name="out_p_height" type="number" required>
-                                    @error('out_p_height')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                    <label>Department</label>
+                                    <select  class="form-control" name="doc_dept_id" id="" required>
+                                        <option value="" selected disabled>--Chose Department--</option>
+                                        @foreach ($Departments as $Department)
+                                            <option value="{{$Department->id}}" @if($EditDoctors->doc_dept_id == $Department->id)? selected : '' @endIf>{{$Department->dept_name}}</option>                                        
+                                        @endforeach
+                                    </select>
+                                    @error('doc_dept_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Weight(kg)</label>
-                                    <input class="form-control" value="{{$EditOutPatient->out_p_weight}}" name="out_p_weight" type="number" required>
-                                    @error('out_p_weight')
+                                    <label>Image</label>
+                                    <input class="form-control" name="doc_img" type="file">
+                                    @error('doc_img')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label>BP</label>
-                                    <input class="form-control" value="{{$EditOutPatient->out_p_bp}}" name="out_p_bp" type="text" required>
-                                    @error('out_p_bp')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>Symtomps</label>
-                                    <textarea  class="form-control"  name="out_p_symptoms" id="" cols="30" rows="3" required>{{$EditOutPatient->out_p_symptoms}}</textarea>
-                                    @error('out_p_symptoms')
+                                    <label>Status</label>
+                                    <div class="form-control">
+                                        <input name="doc_status" type="radio" value="active" @if($EditDoctors->doc_status == 'active')? checked : '' @endIf> &nbsp; Active &nbsp;
+                                        <input name="doc_status" type="radio" value="inactive" @if($EditDoctors->doc_status == 'inactive')? checked : '' @endIf> &nbsp; Inactive
+                                    </div>
+                                    @error('doc_status')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -121,12 +136,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Address</label>
-                                    <textarea  class="form-control" name="out_p_address" id="" cols="30" rows="3" required>{{$EditOutPatient->out_p_address}}</textarea>
-                                    @error('out_p_address')
+                                    <textarea  class="form-control" name="doc_address" id="" cols="30" rows="3" required>{{$EditDoctors->doc_address}}</textarea>
+                                    @error('doc_address')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>                                 
+                            </div>                          
                             <div class="m-t-20 text-center">
                                 <button type="submit" class="btn btn-primary submit-btn">Update Out Patient</button>
                             </div>

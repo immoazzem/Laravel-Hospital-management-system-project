@@ -25,7 +25,8 @@ class CreateDoctorsTable extends Migration
             $table->string('doc_password', 110);
             $table->string('doc_gender', 110);
             $table->string('doc_blood', 110);
-            $table->string('doc_img', 110);
+            $table->string('doc_status');
+            $table->string('doc_img')->nullable();
             $table->unsignedBigInteger('doc_dept_id');
             $table->foreign('doc_dept_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
