@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2022 at 06:55 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Generation Time: Jan 26, 2022 at 02:06 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -108,7 +108,8 @@ CREATE TABLE `doctors` (
   `doc_password` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
   `doc_gender` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
   `doc_blood` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `doc_img` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `doc_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `doc_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `doc_dept_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -118,8 +119,31 @@ CREATE TABLE `doctors` (
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`id`, `doc_id`, `doc_name`, `doc_specialist`, `doc_education`, `doc_phone`, `doc_address`, `doc_email`, `doc_password`, `doc_gender`, `doc_blood`, `doc_img`, `doc_dept_id`, `created_at`, `updated_at`) VALUES
-(1, 'DOC-000001', 'gsdgsdg', 'dsfdsf', 'sdfds', '54354', 'dsfdsfds', 'asda@sda.com', 'sddfds', 'female', 'AB-', 'banner6.png', 2, '2022-01-25 11:47:55', '2022-01-25 11:47:55');
+INSERT INTO `doctors` (`id`, `doc_id`, `doc_name`, `doc_specialist`, `doc_education`, `doc_phone`, `doc_address`, `doc_email`, `doc_password`, `doc_gender`, `doc_blood`, `doc_status`, `doc_img`, `doc_dept_id`, `created_at`, `updated_at`) VALUES
+(1, 'DOC-1', 'dsfdsfds', 'tge', 'wetw', '453543', 'dsgsdgdsg', 'fhdhf@fdh.cvg', '$2y$10$8TYjAd46kqQ/jHPElXJkf.jCFFiQ2Vl7B4zzFFqa4cpjUhCyOSGTe', 'female', 'A-', 'inactive', 'cfcf7d62-5b9b-4b81-a012-5af0ff96e2ee.jpg', 1, '2022-01-26 06:58:03', '2022-01-26 06:58:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctor_schedules`
+--
+
+CREATE TABLE `doctor_schedules` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `doc_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `doctor_schedules`
+--
+
+INSERT INTO `doctor_schedules` (`id`, `doc_name`, `date`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
+(1, 'sdfdsf', '2022-01-17', '18:00:00', '18:58:00', '2022-01-26 06:55:50', '2022-01-26 06:55:50');
 
 -- --------------------------------------------------------
 
@@ -233,7 +257,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2022_01_25_094719_create_medicine_companies_table', 5),
 (15, '2022_01_25_100708_create_medicines_table', 5),
 (17, '2022_01_25_112754_create_out_patients_table', 6),
-(19, '2022_01_25_161323_create_doctors_table', 7);
+(22, '2022_01_25_161323_create_doctors_table', 7),
+(24, '2022_01_26_123109_create_doctor_schedules_table', 8);
 
 -- --------------------------------------------------------
 
@@ -316,10 +341,11 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('IZTuh92NJm2ZeJAN3tYcgxzSUOuMEGvEbXp7hzNL', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaVdoVk5PM2t0bU43a3RpczNDcmJ5ZDVNaVBVcVRtdWxMOHhlM2EwaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9vdXRwYXRpZW50Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1643129927),
-('OU3b8PoqdZQUgllmjVc8xwvjoOTtOhkurTZ4tKaE', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVHNMOGZXMkdwRmlOV0F5MVpRcThJbWtZV0VxOGgxRTlBU3FrRGJpRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9vdXRwYXRpZW50Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643126679),
-('rpoAQWjVw66FTO3Aj5xReoYh7pgpNXSRZS9QjaGN', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoibkpUUm9raThMTVpXdjNtWG1FVGRJd3BVc3lxMTJndGJvb0VlbTFDViI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM0OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vZG9jdG9yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643133287),
-('yoidfiQVlReAJVLelhn3MzMqF8254Q3c7RgmuUzD', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibWdBSW9uNTRFbjBlTDhLeThXcTByeTFZZ05CdzRNVEI1QVVlcmtMUiI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1643129928);
+('0FGTAg6qV4lL19YsowghIlPYkh4VnD7cfYOP4HoO', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiRVAydEpEbmtDTXhjTFl4RjZCbEF3WDY4WWtoT3p5R3F5SG85c3lCZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkOTJJWFVOcGtqTzByT1E1YnlNaS5ZZTRvS29FYTNSbzlsbEMvLm9nL2F0Mi51aGVXRy9pZ2kiO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjt9', 1643198883),
+('ARfzjSk1rI6ssXBuNVAUYAHTb9KQRvps7UlyXcHu', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicWMwTTM3NHNjYTVMOTFTM01tQjhiczhDVzlZRDVwdW14MG96MTllVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1643197378),
+('CSksNkbAKcKUpj3NC3E8oRXp6F0nWqEvbp2EX7m3', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUHhtSUlOcGwyRFVXNmFPTGVkc2NSY0t6QXpUaWZCcFhVOE1ueTh5WSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9kb2N0b3JzY2hlZHVsZS8xL2VkaXQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkOTJJWFVOcGtqTzByT1E1YnlNaS5ZZTRvS29FYTNSbzlsbEMvLm9nL2F0Mi51aGVXRy9pZ2kiO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjt9', 1643202306),
+('IL6N1CWTRMH2wRZ9rDzJGikJaJK3H66BUAIVAqzr', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiYXNQdE4yWHVlUUxHQTF0M3JhaTRVd25US1FxSzBuTFd5cGswTnZlZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9kb2N0b3IiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkOTJJWFVOcGtqTzByT1E1YnlNaS5ZZTRvS29FYTNSbzlsbEMvLm9nL2F0Mi51aGVXRy9pZ2kiO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjt9', 1643199975),
+('sGkF8S0KBrVG42h5m8U7bD2p3fg0COkyel91hgkg', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoibThRQk1Rb3U1S3FsVDFZWUs4ekpEQTZpNk9xaWx5T0dKWFNUc1E3aSI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643198974);
 
 -- --------------------------------------------------------
 
@@ -378,6 +404,12 @@ ALTER TABLE `departments`
 ALTER TABLE `doctors`
   ADD PRIMARY KEY (`id`),
   ADD KEY `doctors_doc_dept_id_foreign` (`doc_dept_id`);
+
+--
+-- Indexes for table `doctor_schedules`
+--
+ALTER TABLE `doctor_schedules`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -481,6 +513,12 @@ ALTER TABLE `doctors`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `doctor_schedules`
+--
+ALTER TABLE `doctor_schedules`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -514,7 +552,7 @@ ALTER TABLE `medicine_groups`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `out_patients`
