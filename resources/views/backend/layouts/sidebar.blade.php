@@ -16,8 +16,7 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-hospital-o"></i> <span> Prescription </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">            
-                        <li><a href="employees.html">Prescription List</a></li>
-                        <li><a href="leaves.html">Prescription Add</a></li>
+                        <li><a href="{{ Route('prescription.index') }}">Prescription List</a></li>
                     </ul>
                 </li>            
                

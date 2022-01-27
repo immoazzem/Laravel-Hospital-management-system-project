@@ -13,6 +13,7 @@ use App\Http\Controllers\backend\medicine\MedicineCompanyController;
 use App\Http\Controllers\backend\medicine\MedicineController;
 use App\Http\Controllers\backend\patient\OutPatientController;
 use App\Http\Controllers\backend\doctor\DoctorController;
+use App\Http\Controllers\backend\doctor\PrescriptionController;
 use App\Http\Controllers\backend\doctor\DoctorScheduleController;
 use App\Http\Controllers\backend\appointment\AppointmentController;
 
@@ -64,6 +65,7 @@ Route::resource('/admin/doctor', DoctorController::class );
 Route::resource('/admin/doctorschedule', DoctorScheduleController::class );
 //Route::get('/admin/appointment/patientdata/{id}', [AppointmentController::class, 'patientdata' ]); //ajax Load Route
 Route::resource('/admin/appointment', AppointmentController::class );
+Route::resource('/admin/prescription', PrescriptionController::class );
 
 
 
