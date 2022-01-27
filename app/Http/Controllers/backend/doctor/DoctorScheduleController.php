@@ -79,9 +79,9 @@ class DoctorScheduleController extends Controller
      */
     public function edit($id)
     {
-        $DoctorSchedule = DoctorSchedule::all();
-        $EditDoctors = Doctors::find($id);
-        return view('backend/doctor/edit-doctorschedule', compact('DoctorSchedule', 'EditDoctors'));
+        $EditDoctorSchedule = DoctorSchedule::find($id);
+        $Doctors = Doctors::all();
+        return view('backend/doctor/edit-doctorschedule', compact('EditDoctorSchedule', 'Doctors'));
     }
 
     /**

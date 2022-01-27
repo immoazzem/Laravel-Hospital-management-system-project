@@ -24,8 +24,7 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-pencil-square-o"></i> <span> Appointments </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="employees.html">Appointments List</a></li>
-                        <li><a href="leaves.html">Appointments Add</a></li>
+                        <li><a href="{{ Route('appointment.index') }}">Appointments List</a></li>
                     </ul>
                 </li>    
                 <li class="menu-title">Setup Management</li> 

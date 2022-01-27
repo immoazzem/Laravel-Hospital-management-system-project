@@ -8,6 +8,7 @@ php artisan migrate:rollback --path=Modules/YourModule/database/migrations/2020_
 =============
 @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf
 @if ( $Doctor->doc_status  == 'active') ? status-green @else status-red @endif
+<span class="custom-badge @if ($Department->dept_status == 'active') ? status-green @else status-red @endif">{{ $Department->dept_status }}</span>
 ==================
 composer require haruncpi/laravel-id-generator
 use Haruncpi\LaravelIdGenerator\IdGenerator;  
@@ -39,3 +40,8 @@ public static function boot()
 ===============
 'nullable|mimes:jpg,jpeg,png|max:2048'
 ===========
+ <td>
+@php $patient=collect($patients)->where('out_p_id',$appointment->app_p_id)->first() 
+@endphp
+ {{$patient->out_p_name}}
+</td>

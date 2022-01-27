@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Doctors Schedule Edit Form</h4>
                         <p class="card-text">
-                        <form action="{{ route('doctorschedule.update', $DoctorSchedule->id) }}" method="post">
+                        <form action="{{ route('doctorschedule.update', $EditDoctorSchedule->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
@@ -26,7 +26,7 @@
                                 <select  class="form-control" name="doc_name" id="" required>
                                     <option value="" selected disabled>--Chose Doctor--</option>
                                     @foreach ($Doctors as $Doctor)
-                                        <option value="{{$Doctor->doc_name}}" @if($Doctor->doc_name == $DoctorSchedule->doc_name)? selected : '' @endIf>{{$Doctor->doc_name}}</option>                                        
+                                        <option value="{{$Doctor->doc_name}}" @if($Doctor->doc_name == $EditDoctorSchedule->doc_name)? selected : '' @endIf>{{$Doctor->doc_name}}</option>                                        
                                     @endforeach
                                 </select>
                                 @error('doc_name')
@@ -35,21 +35,21 @@
                             </div>
                             <div class="form-group">
                                 <label>Date</label>
-                                <input class="form-control" value="{{$DoctorSchedule->date}}" name="date" type="date">
+                                <input class="form-control" value="{{$EditDoctorSchedule->date}}" name="date" type="date">
                                 @error('date')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label>Start Time</label>
-                                <input class="form-control" value="{{$DoctorSchedule->start_time}}" name="start_time" type="time">
+                                <input class="form-control" value="{{$EditDoctorSchedule->start_time}}" name="start_time" type="time">
                                 @error('start_time')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label>End Time</label>
-                                <input class="form-control" value="{{$DoctorSchedule->end_time}}" name="end_time" type="time">
+                                <input class="form-control" value="{{$EditDoctorSchedule->end_time}}" name="end_time" type="time">
                                 @error('end_time')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
