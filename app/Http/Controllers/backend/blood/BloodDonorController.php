@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend\blood;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\backend\BloodDonor;
+use App\Models\backend\BloodGroup;
 
 class BloodDonorController extends Controller
 {
@@ -26,8 +27,10 @@ class BloodDonorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+    
     {
-        return view('backend/blooddonor/add-blooddonor');
+        $BloodGroups = BloodGroup::all();  
+        return view('backend/blooddonor/add-blooddonor', compact('BloodGroups'));
     }
 
     /**
@@ -45,7 +48,7 @@ class BloodDonorController extends Controller
             'donor_sex' => 'required',
     		'donor_last_date' => 'required',
     		'donor_phone' => 'required',                          
-    		'donor_email' => 'required|email|nullable',                          
+    		'donor_email' => 'email|nullable',                          
         ]);
         // $info = array(
         //     'message' => "Holidays Class Added successfull",
@@ -84,7 +87,8 @@ class BloodDonorController extends Controller
     public function edit($id)
     {
         $EditBloodDonor = BloodDonor::find($id);    
-        return view('backend/blooddonor/edit-blooddonor', compact('EditBloodDonor'));
+        $BloodGroups = BloodGroup::all();    
+        return view('backend/blooddonor/edit-blooddonor', compact('EditBloodDonor', 'BloodGroups'));
     }
 
     /**

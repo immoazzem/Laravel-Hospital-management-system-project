@@ -101,7 +101,8 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-heartbeat"></i> <span> Blood Donor</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">            
-                        <li><a href="employees.html">Blood Bank</a></li>
+                        
+                        <li><a href="{{Route('bloodbank.index')}}">Blood Bank</a></li>
                         <li><a href="{{Route('blooddonor.index')}}">Blood Donor List</a></li>
                         <li><a href="{{Route('bloodgroup.index')}}">Blood Group List</a></li>
                     </ul>

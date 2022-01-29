@@ -9,5 +9,5 @@ class BloodDonor extends Model
 {
     use HasFactory;
     protected $primaryKey ='id';
-    protected $fillable = ['donor_name','donor_blood','donor_age','donor_sex','donor_last_date','donor_phone','donor_email'];
+    protected $fillable = ['donor_name','donor_blood','donor_age','donor_sex','donor_last_date','donor_phone'];
 }

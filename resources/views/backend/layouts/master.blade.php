@@ -81,13 +81,21 @@
 
 
             {{-- Section Entend here --}}
-            {{-- Footer Content --}}
-            @include('backend/layouts/footer-content')
+          
 
 
         </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                  {{-- Footer Content --}}
+            @include('backend/layouts/footer-content')
+            </div>
+        </div>
+    </div>
 
     @include('backend/layouts/footer')
 

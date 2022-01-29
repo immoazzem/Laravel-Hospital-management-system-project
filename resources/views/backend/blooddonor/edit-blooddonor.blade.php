@@ -24,7 +24,8 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label>Name</label>
-                                    <input class="form-control" value="{{$EditBloodDonor->donor_name}}" name="donor_name" type="text" required>
+                                    <input class="form-control" value="{{ $EditBloodDonor->donor_name }}"
+                                        name="donor_name" type="text" required>
                                     @error('donor_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -33,37 +34,33 @@
                                     <label>Gender</label>
                                     <div class="form-control">
 
-                                        <input name="donor_sex" type="radio" value="male"> &nbsp; Male &nbsp;
-                                        <input name="donor_sex" type="radio" value="female"> &nbsp; Female
+                                        <input name="donor_sex" type="radio" value="male" @if($EditBloodDonor->donor_sex == 'male')? Checked : '' @endIf> &nbsp; Male &nbsp;
+                                        <input name="donor_sex" type="radio" value="female" @if($EditBloodDonor->donor_sex == 'female')? Checked : '' @endIf> &nbsp; Female
                                     </div>
                                     @error('donor_sex')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                               
+
                             </div>
                             <div class="form-group row">
-                                
+
                                 <div class="col-md-6">
                                     <label>Age</label>
-                                    <input class="form-control" value="{{$EditBloodDonor->donor_age}}" name="donor_age" type="number" required>
+                                    <input class="form-control" value="{{ $EditBloodDonor->donor_age }}" name="donor_age"
+                                        type="number" required>
                                     @error('donor_age')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label>Blood Group</label>
-                                    <select name="donor_blood" id=""  class="form-control" required>
+                                    <select name="donor_blood" id="" class="form-control" required>
                                         <option value="" selected disabled>--Select Blood--</option>
-                                        <option value="A+" @if($EditBloodDonor->donor_blood == '')? selected : '' @endIf> A+ </option>
-			                            <option value="A-" @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf> A- </option>
-			                             <option value="B+" @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf> B+ </option>
-			                             <option value="B-" @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf> B- </option>
-			                             <option value="AB+" @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf> AB+ </option>
-			                             <option value="AB-" @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf> AB- </option>
-			                             <option value="O+" @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf> O+ </option>
-			                             <option value="O-" @if($MedicineGroup->name == $EditMedicine->group)? selected : '' @endIf> O- </option>
-                                    </select>                                  
+                                        @foreach ($BloodGroups as $BloodGroup)
+                                            <option value="{{ $BloodGroup->name }}" @if($BloodGroup->name == $EditBloodDonor->donor_blood)? selected : '' @endIf>{{ $BloodGroup->name }}</option>
+                                        @endforeach
+                                    </select>
                                     @error('donor_blood')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -72,14 +69,16 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label>Phone</label>
-                                    <input class="form-control" value="{{$EditBloodDonor->donor_phone}}" name="donor_phone" type="number" required>
+                                    <input class="form-control" value="{{ $EditBloodDonor->donor_phone }}"
+                                        name="donor_phone" type="number" required>
                                     @error('donor_phone')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label>Last Date Of Donate Blood</label>
-                                    <input class="form-control" value="{{$EditBloodDonor->donor_last_date}}" name="donor_last_date" type="date" required>
+                                    <input class="form-control" value="{{ $EditBloodDonor->donor_last_date }}"
+                                        name="donor_last_date" type="date" required>
                                     @error('donor_last_date')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -89,13 +88,14 @@
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <label>Email</label>
-                                    <input class="form-control" value="{{$EditBloodDonor->donor_email}}" name="donor_email" type="email">
+                                    <input class="form-control" value="{{ $EditBloodDonor->donor_email }}"
+                                        name="donor_email" type="email">
                                     @error('donor_email')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                
-                            </div>                         
+
+                            </div>
                             <div class="m-t-20 text-center">
                                 <button type="submit" class="btn btn-primary submit-btn">Update Blood Donor</button>
                             </div>

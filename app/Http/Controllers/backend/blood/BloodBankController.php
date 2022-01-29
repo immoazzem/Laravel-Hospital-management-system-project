@@ -4,9 +4,10 @@ namespace App\Http\Controllers\backend\blood;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\backend\BloodBank;
 use App\Models\backend\BloodGroup;
 
-class BloodGroupController extends Controller
+class BloodBankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,9 @@ class BloodGroupController extends Controller
      */
     public function index()
     {
-
-        $BloodGroups = BloodGroup::all();
-        return view('backend/blooddonor/bloodgroup', compact('BloodGroups'));
+        $BloodGroups = BloodGroup::all(); 
+        $BloodBanks = BloodBank::all();
+        return view('backend/blooddonor/bloodbank', compact('BloodBanks', 'BloodGroups'));
     }
 
     /**
@@ -39,7 +40,8 @@ class BloodGroupController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'blood_bag_name' => 'required',
+            'blood_bag_quantity' => 'required',
                           
         ]);
         // $info = array(
@@ -47,10 +49,11 @@ class BloodGroupController extends Controller
         //     'alert-type' => 'success'
         // );
 
-        $BloodGroup = new BloodGroup;
-        $BloodGroup->name = $request->name;       
-        $BloodGroup->save();
-        return redirect('admin/bloodgroup')->with('success', 'BloodGroup created successfully.');
+        $BloodBank = new BloodBank;
+        $BloodBank->blood_bag_name = $request->blood_bag_name;       
+        $BloodBank->blood_bag_quantity = $request->blood_bag_quantity;       
+        $BloodBank->save();
+        return redirect('admin/bloodbank')->with('success', 'BloodBank created successfully.');
     }
 
     /**
@@ -72,8 +75,9 @@ class BloodGroupController extends Controller
      */
     public function edit($id)
     {
-        $EditBloodGroup = BloodGroup::find($id);    
-        return view('backend/blooddonor/edit-bloodgroup', compact('EditBloodGroup'));
+        $BloodGroups = BloodGroup::all(); 
+        $EditBloodBank = BloodBank::find($id);    
+        return view('backend/blooddonor/edit-bloodbank', compact('EditBloodBank', 'BloodGroups'));
     }
 
     /**
@@ -86,7 +90,8 @@ class BloodGroupController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'blood_bag_name' => 'required',
+            'blood_bag_quantity' => 'required',
                                                
         ]);
 
@@ -95,11 +100,11 @@ class BloodGroupController extends Controller
         //     'alert-type' => 'success'
         // );
 
-        $UpdateBloodGroup = BloodGroup::find($id);
-        $UpdateBloodGroup->name = $request->name; 
-       
-        $UpdateBloodGroup->save();
-        return redirect('admin/bloodgroup')->with('success', 'BloodGroup Update successfully.');
+        $UpdateBloodBank = BloodBank::find($id);
+        $UpdateBloodBank->blood_bag_name = $request->blood_bag_name;       
+        $UpdateBloodBank->blood_bag_quantity = $request->blood_bag_quantity;   
+        $UpdateBloodBank->save();
+        return redirect('admin/bloodbank')->with('success', 'BloodBank Update successfully.');
     }
 
     /**
@@ -110,9 +115,9 @@ class BloodGroupController extends Controller
      */
     public function destroy($id)
     {
-        $DeleteBloodGroup = BloodGroup::find($id);
-        $DeleteBloodGroup->delete();
-        return redirect('admin/bloodgroup')->with('success', 'BloodGroup Delete successfully.');
+        $DeleteBloodBank = BloodBank::find($id);
+        $DeleteBloodBank->delete();
+        return redirect('admin/bloodbank')->with('success', 'BloodBank Delete successfully.');
 
     }
 }

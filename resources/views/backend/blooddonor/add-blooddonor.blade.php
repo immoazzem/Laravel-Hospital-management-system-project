@@ -54,14 +54,9 @@
                                     <label>Blood Group</label>
                                     <select name="donor_blood" id=""  class="form-control" required>
                                         <option value="" selected disabled>--Select Blood--</option>
-                                        <option value="A+"> A+ </option>
-			                            <option value="A-"> A- </option>
-			                             <option value="B+"> B+ </option>
-			                             <option value="B-"> B- </option>
-			                             <option value="AB+"> AB+ </option>
-			                             <option value="AB-"> AB- </option>
-			                             <option value="O+"> O+ </option>
-			                             <option value="O-"> O- </option>
+                                        @foreach ($BloodGroups as $BloodGroup)
+                                            <option value="{{ $BloodGroup->name }}" >{{ $BloodGroup->name }}</option>
+                                        @endforeach
                                     </select>                                  
                                     @error('donor_blood')
                                         <div class="alert alert-danger">{{ $message }}</div>
