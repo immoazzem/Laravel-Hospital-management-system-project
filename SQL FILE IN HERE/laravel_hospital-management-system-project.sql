@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2022 at 01:59 PM
+-- Generation Time: Jan 29, 2022 at 01:59 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -53,6 +53,54 @@ INSERT INTO `appointments` (`id`, `app_sl`, `app_p_id`, `app_p_name`, `app_p_pho
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `assets`
+--
+
+CREATE TABLE `assets` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_of_purchase` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `assets`
+--
+
+INSERT INTO `assets` (`id`, `name`, `category`, `price`, `date_of_purchase`, `created_at`, `updated_at`) VALUES
+(1, 'Bert Sweet', 'asddddddd', '828', '2000-10-05', '2022-01-29 05:59:33', '2022-01-29 05:59:33'),
+(2, 'Abigail Hayden', 'Candace Blair', '394', '2014-10-24', '2022-01-29 05:59:38', '2022-01-29 05:59:38'),
+(3, 'Kelly Warren', 'Jack Hendricks', '4455', '1998-01-29', '2022-01-29 05:59:41', '2022-01-29 06:04:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asset_categories`
+--
+
+CREATE TABLE `asset_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `asset_categories`
+--
+
+INSERT INTO `asset_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(3, 'Candace Blair', '2022-01-29 05:39:22', '2022-01-29 05:39:22'),
+(4, 'asddddddd', '2022-01-29 05:39:25', '2022-01-29 05:42:23'),
+(5, 'Jack Hendricks', '2022-01-29 05:58:36', '2022-01-29 05:58:36'),
+(6, 'Burke Valenzuela', '2022-01-29 05:58:39', '2022-01-29 05:58:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `beds`
 --
 
@@ -94,6 +142,83 @@ INSERT INTO `bed_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'dvdfg', '2022-01-24 10:25:18', '2022-01-24 10:25:18'),
 (2, 'dsgsdgsd', '2022-01-24 10:25:20', '2022-01-24 10:25:20'),
 (3, 'sdgsdg', '2022-01-24 10:25:24', '2022-01-24 10:25:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blood_banks`
+--
+
+CREATE TABLE `blood_banks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `blood_bag_name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `blood_bag_quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blood_banks`
+--
+
+INSERT INTO `blood_banks` (`id`, `blood_bag_name`, `blood_bag_quantity`, `created_at`, `updated_at`) VALUES
+(1, 'AB-', 5, '2022-01-29 05:21:01', '2022-01-29 05:24:34'),
+(2, 'AB-', 5, '2022-01-29 05:21:05', '2022-01-29 05:21:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blood_donors`
+--
+
+CREATE TABLE `blood_donors` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `donor_name` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `donor_blood` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `donor_age` int(11) NOT NULL,
+  `donor_sex` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `donor_last_date` date NOT NULL,
+  `donor_phone` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `donor_email` varchar(110) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blood_donors`
+--
+
+INSERT INTO `blood_donors` (`id`, `donor_name`, `donor_blood`, `donor_age`, `donor_sex`, `donor_last_date`, `donor_phone`, `donor_email`, `created_at`, `updated_at`) VALUES
+(1, 'aaaaaaaaaa', 'B-', 23, 'male', '2022-01-18', '2343', 'asdsa@ew.cy', '2022-01-29 04:55:39', '2022-01-29 04:59:13'),
+(3, 'erert', 'A-', 345, 'female', '2022-01-03', '35435', 'erew@ad.com', '2022-01-29 04:59:52', '2022-01-29 04:59:52'),
+(4, 'Oscar Wade', 'A-', 26, 'male', '1989-10-20', '82', 'jiwykuxo@mailinator.com', '2022-01-29 05:24:54', '2022-01-29 05:24:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blood_groups`
+--
+
+CREATE TABLE `blood_groups` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `blood_groups`
+--
+
+INSERT INTO `blood_groups` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'AB+', '2022-01-29 04:51:02', '2022-01-29 04:51:02'),
+(2, 'AB-', '2022-01-29 04:51:15', '2022-01-29 04:51:15'),
+(6, 'A+', '2022-01-29 04:54:42', '2022-01-29 04:54:42'),
+(7, 'A-', '2022-01-29 04:54:48', '2022-01-29 04:54:48'),
+(8, 'B+', '2022-01-29 04:54:53', '2022-01-29 04:54:53'),
+(9, 'B-', '2022-01-29 04:54:57', '2022-01-29 04:54:57'),
+(10, 'O-', '2022-01-29 04:55:04', '2022-01-29 04:55:04'),
+(11, 'O+', '2022-01-29 04:55:16', '2022-01-29 04:55:16');
 
 -- --------------------------------------------------------
 
@@ -216,6 +341,53 @@ INSERT INTO `floors` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lab_departments`
+--
+
+CREATE TABLE `lab_departments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `lab_departments`
+--
+
+INSERT INTO `lab_departments` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Rose Valentine', '2022-01-29 06:23:04', '2022-01-29 06:23:04'),
+(2, 'Rahim Reillyyyyyyyyyyyyy', '2022-01-29 06:23:07', '2022-01-29 06:23:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lab_tests`
+--
+
+CREATE TABLE `lab_tests` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `doc_id` bigint(20) UNSIGNED NOT NULL,
+  `out_p_id` bigint(20) UNSIGNED NOT NULL,
+  `in_p_id` bigint(20) UNSIGNED NOT NULL,
+  `lab_department` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_of_test` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `lab_tests`
+--
+
+INSERT INTO `lab_tests` (`id`, `name`, `doc_id`, `out_p_id`, `in_p_id`, `lab_department`, `price`, `date_of_test`, `created_at`, `updated_at`) VALUES
+(1, 'Brenna Trujillo', 1, 3, 0, '2', '309', '1970-02-19', '2022-01-29 06:52:56', '2022-01-29 06:52:56');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `medicines`
 --
 
@@ -314,7 +486,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2022_01_25_161323_create_doctors_table', 7),
 (25, '2022_01_26_123109_create_doctor_schedules_table', 8),
 (29, '2022_01_27_093520_create_appointments_table', 9),
-(30, '2022_01_27_114842_create_prescriptions_table', 10);
+(30, '2022_01_27_114842_create_prescriptions_table', 10),
+(35, '2022_01_29_094722_create_blood_donors_table', 11),
+(36, '2022_01_29_103036_create_blood_groups_table', 11),
+(37, '2022_01_29_110317_create_blood_banks_table', 12),
+(38, '2022_01_29_112713_create_asset_categories_table', 13),
+(39, '2022_01_29_114439_create_assets_table', 14),
+(40, '2022_01_29_120558_create_lab_departments_table', 15),
+(43, '2022_01_29_121650_create_lab_tests_table', 16);
 
 -- --------------------------------------------------------
 
@@ -415,13 +594,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2g9TLLTTRfwdw7olYVoYEHjUbJPDrYXPFl3K8YPD', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiQW1vS1pvb2xMSUtPVGUxalYySlBGdXV0VE5NMmlsYmF0bVVjR00xZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcmVzY3JpcHRpb24vY3JlYXRlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643287863),
-('4YEawSLzDVvxirfTmsKHRPmPLCJYQeZ3L9vPHELw', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaFZOeTBtaGpibmpIZUpZS0FHNzV0R2d3Tks0ejFlNEFJVEJ1VG5BZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcmVzY3JpcHRpb24vY3JlYXRlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1643286545),
-('dXj8MwFoMd4nxiBxZjp7UMyvh58YF7oaD7Buzt9t', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiMG85U1NTY0h2bjQwckZZS28yVnQzNXZnZWdVU2h0eHNhbVRlNTNaeSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9kb2N0b3JzY2hlZHVsZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkOTJJWFVOcGtqTzByT1E1YnlNaS5ZZTRvS29FYTNSbzlsbEMvLm9nL2F0Mi51aGVXRy9pZ2kiO30=', 1643283958),
-('HMjuv5t81l3EaKrojOl7w1urbiUcWL5xwHQxTHz0', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNmFDZVJKTFRsNVNwUThQRjB3V2dSVExlZ1NTaU85ano5VTdyNFREZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcmVzY3JpcHRpb24vY3JlYXRlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1643286364),
-('pn9B5ylC6Zf5KpaoO1OViyjYTMlsEGH2mG7Wt15c', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoicUJSZE5IS2tWTWViZlpzdE9RMGJVMUtIMndQYmlpQ3IxdDVGNTg0ZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcmVzY3JpcHRpb24vY3JlYXRlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643286341),
-('RnqFIBpS2uB3irFnau82GulWiNz6gr7Ne6EP4AtJ', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoicHRyQXNNUGhLNEpFczk5bGpqOVk5M0tJWHNLcWJKUkQzVk9zTVh2bSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcmVzY3JpcHRpb24vY3JlYXRlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643286910),
-('sdTXY6S8QehN70saWGzIyHj9JZoABVuFtZl7v3ME', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiZ29rUXBzajRPRHU3VWJpS1daRUp3VHAxaFUxb3pKWWxoUEN0WnVpUyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcmVzY3JpcHRpb24vY3JlYXRlIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643286469);
+('xvKJmEOkGrqxeClX5ylvhLEbXyqkDydVwg6xm7tW', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoieDdScnN6cTB4ZXF5azk3cW4xb0pnTkptenRleHN3OXFXbG9KR0J6aiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9sYWJ0ZXN0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643461124);
 
 -- --------------------------------------------------------
 
@@ -450,7 +623,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `user_role`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'Yearul Islam', 'admin@admin.com', 'admin', '2022-01-22 10:44:59', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, 'xykHlQOomk8sKgw3VqHud7GbcQYRVxU2uqnMeKWX1qpvdJ6eNt2vsrFr3Aws', NULL, 'profile-photos/ql0Ihclx56iYMQNPz3uhb0HIyllGydGJinx6L8RG.jpg', '2022-01-22 10:44:59', '2022-01-23 10:47:03');
+(1, 'Yearul Islam', 'admin@admin.com', 'admin', '2022-01-22 10:44:59', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', NULL, NULL, 'xykHlQOomk8sKgw3VqHud7GbcQYRVxU2uqnMeKWX1qpvdJ6eNt2vsrFr3Aws', NULL, 'profile-photos/kCh9Hn0RnKIq7HamGDXrTLYyLppZhsC1Inh2Kte6.jpg', '2022-01-22 10:44:59', '2022-01-29 03:37:41');
 
 --
 -- Indexes for dumped tables
@@ -465,6 +638,18 @@ ALTER TABLE `appointments`
   ADD KEY `appointments_app_doc_id_foreign` (`app_doc_id`);
 
 --
+-- Indexes for table `assets`
+--
+ALTER TABLE `assets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `asset_categories`
+--
+ALTER TABLE `asset_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `beds`
 --
 ALTER TABLE `beds`
@@ -474,6 +659,24 @@ ALTER TABLE `beds`
 -- Indexes for table `bed_categories`
 --
 ALTER TABLE `bed_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blood_banks`
+--
+ALTER TABLE `blood_banks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blood_donors`
+--
+ALTER TABLE `blood_donors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blood_groups`
+--
+ALTER TABLE `blood_groups`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -507,6 +710,20 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `floors`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lab_departments`
+--
+ALTER TABLE `lab_departments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lab_tests`
+--
+ALTER TABLE `lab_tests`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lab_tests_doc_id_foreign` (`doc_id`),
+  ADD KEY `lab_tests_out_p_id_foreign` (`out_p_id`);
 
 --
 -- Indexes for table `medicines`
@@ -587,6 +804,18 @@ ALTER TABLE `appointments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `assets`
+--
+ALTER TABLE `assets`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `asset_categories`
+--
+ALTER TABLE `asset_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `beds`
 --
 ALTER TABLE `beds`
@@ -597,6 +826,24 @@ ALTER TABLE `beds`
 --
 ALTER TABLE `bed_categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `blood_banks`
+--
+ALTER TABLE `blood_banks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `blood_donors`
+--
+ALTER TABLE `blood_donors`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `blood_groups`
+--
+ALTER TABLE `blood_groups`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -629,6 +876,18 @@ ALTER TABLE `floors`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `lab_departments`
+--
+ALTER TABLE `lab_departments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `lab_tests`
+--
+ALTER TABLE `lab_tests`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `medicines`
 --
 ALTER TABLE `medicines`
@@ -650,7 +909,7 @@ ALTER TABLE `medicine_groups`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `out_patients`
@@ -692,6 +951,13 @@ ALTER TABLE `appointments`
 --
 ALTER TABLE `doctors`
   ADD CONSTRAINT `doctors_doc_dept_id_foreign` FOREIGN KEY (`doc_dept_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `lab_tests`
+--
+ALTER TABLE `lab_tests`
+  ADD CONSTRAINT `lab_tests_doc_id_foreign` FOREIGN KEY (`doc_id`) REFERENCES `doctors` (`id`),
+  ADD CONSTRAINT `lab_tests_out_p_id_foreign` FOREIGN KEY (`out_p_id`) REFERENCES `out_patients` (`id`);
 
 --
 -- Constraints for table `prescriptions`
