@@ -19,6 +19,7 @@ use App\Http\Controllers\backend\appointment\AppointmentController;
 use App\Http\Controllers\backend\blood\BloodDonorController;
 use App\Http\Controllers\backend\blood\BloodGroupController;
 use App\Http\Controllers\backend\blood\BloodBankController;
+use App\Http\Controllers\backend\asset\AssetCategoryController;
 
 
 /*
@@ -72,6 +73,7 @@ Route::resource('/admin/prescription', PrescriptionController::class );
 Route::resource('/admin/blooddonor', BloodDonorController::class );
 Route::resource('/admin/bloodgroup', BloodGroupController::class );
 Route::resource('/admin/bloodbank', BloodBankController::class );
+Route::resource('/admin/assetcategory', AssetCategoryController::class );
 
 
 
