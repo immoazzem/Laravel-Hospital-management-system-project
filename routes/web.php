@@ -21,6 +21,7 @@ use App\Http\Controllers\backend\blood\BloodGroupController;
 use App\Http\Controllers\backend\blood\BloodBankController;
 use App\Http\Controllers\backend\asset\AssetCategoryController;
 use App\Http\Controllers\backend\asset\AssetController;
+use App\Http\Controllers\backend\lab\LabDepartmentController;
 
 
 /*
@@ -76,6 +77,7 @@ Route::resource('/admin/bloodgroup', BloodGroupController::class );
 Route::resource('/admin/bloodbank', BloodBankController::class );
 Route::resource('/admin/assetcategory', AssetCategoryController::class );
 Route::resource('/admin/asset', AssetController::class );
+Route::resource('/admin/labdepartment', LabDepartmentController::class );
 
 
 

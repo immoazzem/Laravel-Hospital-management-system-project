@@ -110,7 +110,7 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-child"></i> <span> Lab Test </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">            
-                        <li><a href="employees.html">Lab Test Category</a></li>
+                        <li><a href="{{Route('labdepartment.index')}}">Lab Test Category</a></li>
                         <li><a href="employees.html">Lab Test List</a></li>
                         <li><a href="leaves.html">Lab Test Add</a></li>
                     </ul>
