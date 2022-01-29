@@ -75,8 +75,9 @@
             @yield('doctorschedule')
             @yield('edit-doctorschedule')
             
+            
             @yield('patient')
-
+            @yield('content')
 
 
             {{-- Section Entend here --}}
