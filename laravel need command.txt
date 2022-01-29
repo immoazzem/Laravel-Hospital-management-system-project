@@ -39,6 +39,10 @@ public static function boot()
        $OldData->update();
 ===============
 'nullable|mimes:jpg,jpeg,png|max:2048'
+php artisan config:clear
+
+php artisan cache:clear
+
 ===========
  <td>
 @php $patient=collect($patients)->where('out_p_id',$appointment->app_p_id)->first() 

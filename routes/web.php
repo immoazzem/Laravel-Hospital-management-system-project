@@ -24,6 +24,7 @@ use App\Http\Controllers\backend\asset\AssetController;
 use App\Http\Controllers\backend\lab\LabDepartmentController;
 use App\Http\Controllers\backend\lab\LabTeastController;
 use App\Http\Controllers\backend\hrm\EmployeeRoleController;
+use App\Http\Controllers\backend\hrm\EmployeeController;
 
 
 /*
@@ -82,6 +83,7 @@ Route::resource('/admin/asset', AssetController::class );
 Route::resource('/admin/labdepartment', LabDepartmentController::class );
 Route::resource('/admin/labtest', LabTeastController::class );
 Route::resource('/admin/employee-role', EmployeeRoleController::class );
+Route::resource('/admin/employee', EmployeeController::class );
 
 
 

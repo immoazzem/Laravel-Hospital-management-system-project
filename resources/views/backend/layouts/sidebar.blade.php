@@ -59,8 +59,7 @@
                     <a href="#"><i class="fa fa-money"></i> <span> HRM Management </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{Route('employee-role.index')}}">Employee Role Add</a></li>
-                        <li><a href="leaves.html">Employee Add</a></li>
-                        <li><a href="leaves.html">Employee Add</a></li>
+                        <li><a href="{{Route('employee.index')}}">Employee List</a></li>
                     </ul>
                 </li> 
                 <li class="submenu">
