@@ -104,8 +104,10 @@ class LabTeastController extends Controller
     public function edit($id)
     {
         $LabDepartments = LabDepartment::all();
+        $Doctors = Doctors::all();
+        $OutPatients = OutPatient::all();
         $EditLabTest = LabTest::find($id);    
-        return view('backend/lab/edit-lab', compact('EditLabTest', 'LabDepartments'));
+        return view('backend/lab/edit-lab', compact('EditLabTest', 'LabDepartments', 'Doctors', 'OutPatients'));
     }
 
     /**
@@ -140,13 +142,13 @@ class LabTeastController extends Controller
         if($request->out_p_id)  {
             $UpdateLabTest->out_p_id = $request->out_p_id; 
         } else {
-            $UpdateLabTest->out_p_id = "Empty"; 
+            $UpdateLabTest->out_p_id = 0; 
         }   
 
         if($request->in_p_id)  {
             $UpdateLabTest->in_p_id = $request->in_p_id; 
         } else {
-            $UpdateLabTest->in_p_id = "Empty"; 
+            $UpdateLabTest->in_p_id = 0; 
         }    
 
         $UpdateLabTest->lab_department = $request->lab_department;       

@@ -40,7 +40,7 @@
                                     <td>
                                         @php  $OutPatient = collect($OutPatients)->where('id', $LabTest->out_p_id)->first();
                                         @endphp
-                                        {{ $OutPatient->in_p_name }}
+                                        {{ $OutPatient->out_p_name }}
                                     </td>
                                     <td>
                                         {{-- @php $doctor = collect($Doctors)->where('id', $LabTest->doc_id)->first();
@@ -48,7 +48,11 @@
 
                                         {{ $LabTest->in_p_id }}
                                     </td>
-                                    <td>{{ $LabTest->lab_department }}</td>
+                                    <td>
+                                        @php  $LabDepartment = collect($LabDepartments)->where('id', $LabTest->lab_department)->first();
+                                        @endphp
+                                        {{ $LabDepartment->name }}
+                                    </td>
                                     <td>{{ $LabTest->price }}</td>
                                     <td>{{ $LabTest->date_of_test }}</td>
                                     <td class="text-right">

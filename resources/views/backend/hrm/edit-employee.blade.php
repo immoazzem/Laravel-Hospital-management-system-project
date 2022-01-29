@@ -1,5 +1,5 @@
 @extends('backend/layouts/master')
-@section('content')
+@section('edit-floor')
 
     <div class="content">
         <div class="row">
