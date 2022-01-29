@@ -93,9 +93,8 @@
                 <li class="submenu">
                     <a href="#"><i class="fa fa-bed"></i> <span> Assets </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
+                        <li><a href="{{Route('asset.index')}}">Assets List</a></li>
                         <li><a href="{{Route('assetcategory.index')}}">Assets Category</a></li>
-                        <li><a href="employees.html">Assets List</a></li>
-                        <li><a href="leaves.html">Assets Add</a></li>
                     </ul>
                 </li> 
                 <li class="submenu">
