@@ -17,6 +17,7 @@ use App\Http\Controllers\backend\doctor\PrescriptionController;
 use App\Http\Controllers\backend\doctor\DoctorScheduleController;
 use App\Http\Controllers\backend\appointment\AppointmentController;
 use App\Http\Controllers\backend\blood\BloodDonorController;
+use App\Http\Controllers\backend\blood\BloodGroupController;
 
 
 /*
@@ -68,6 +69,7 @@ Route::resource('/admin/doctorschedule', DoctorScheduleController::class );
 Route::resource('/admin/appointment', AppointmentController::class );
 Route::resource('/admin/prescription', PrescriptionController::class );
 Route::resource('/admin/blooddonor', BloodDonorController::class );
+Route::resource('/admin/bloodgroup', BloodGroupController::class );
 
 
 

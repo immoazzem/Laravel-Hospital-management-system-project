@@ -103,6 +103,7 @@
                     <ul style="display: none;">            
                         <li><a href="employees.html">Blood Bank</a></li>
                         <li><a href="{{Route('blooddonor.index')}}">Blood Donor List</a></li>
+                        <li><a href="{{Route('bloodgroup.index')}}">Blood Group List</a></li>
                     </ul>
                 </li>                           
                 
