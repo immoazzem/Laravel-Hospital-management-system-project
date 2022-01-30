@@ -16,7 +16,7 @@ class MedicineInvoiceController extends Controller
      */
     public function index()
     {
-        $Medicines =  Medicine::all();
+        $Medicines =  Medicine::all()->sortByDesc("created_at");
         $MedicineInvoice = MedicineInvoice::all();
         return view('backend/medicine/medicine/medicineinvoice', compact('MedicineInvoice', 'Medicines'));
     }
@@ -44,6 +44,8 @@ class MedicineInvoiceController extends Controller
             'medicine_name' => 'required|string',                            
             'medicine_quantity' => 'required|integer',                            
             'medicine_price' => 'required|integer',                                                     
+            'medicine_discount' => 'required',                                                     
+            'medicine_total' => 'required',                                                     
         ]);
 
         // $info = array(
@@ -55,6 +57,8 @@ class MedicineInvoiceController extends Controller
         $MedicineInvoice->medicine_name = $request->medicine_name; 
         $MedicineInvoice->medicine_quantity = $request->medicine_quantity; 
         $MedicineInvoice->medicine_price = $request->medicine_price; 
+        $MedicineInvoice->medicine_discount = $request->medicine_discount; 
+        $MedicineInvoice->medicine_total = $request->medicine_total; 
 
         $MedicineInvoice->save();
         return redirect('/admin/medicineinvoice')->with('success', 'MedicineInvoice created successfully.');
@@ -96,7 +100,9 @@ class MedicineInvoiceController extends Controller
         $request->validate([
             'medicine_name' => 'required|string',                            
             'medicine_quantity' => 'required|integer',                            
-            'medicine_price' => 'required|integer',                                
+            'medicine_price' => 'required|integer',                                                     
+            'medicine_discount' => 'required',                                                     
+            'medicine_total' => 'required',                                  
         ]);
 
         // $info = array(
@@ -108,6 +114,8 @@ class MedicineInvoiceController extends Controller
         $UpdateMedicineInvoice->medicine_name = $request->medicine_name; 
         $UpdateMedicineInvoice->medicine_quantity = $request->medicine_quantity; 
         $UpdateMedicineInvoice->medicine_price = $request->medicine_price; 
+        $UpdateMedicineInvoice->medicine_discount = $request->medicine_discount; 
+        $UpdateMedicineInvoice->medicine_total = $request->medicine_total; 
 
         $UpdateMedicineInvoice->save();
         return redirect('/admin/medicineinvoice')->with('success', 'MedicineInvoice Update successfully.');

@@ -19,10 +19,10 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label>Name of Medicine</label>
-                                <select  class="form-control"  name="medicine_name" id="" required>
-                                    <option value="" selected disabled>--Chose Group--</option>
+                                <select id="MedicineName" class="form-control" name="medicine_name" id="" required>
+                                    <option value="" selected disabled>--Chose Medicine--</option>
                                     @foreach ($Medicines as $Medicine)
-                                        <option value="{{$Medicine->id}}" @if($Medicine->id == $EditMedicineInvoice->medicine_name)? selected : '' @endIf>{{$Medicine->name}}</option>                                        
+                                        <option value="{{ $Medicine->id }}" @if($Medicine->id == $EditMedicineInvoice->medicine_name)? selected : '' @endIf>{{ $Medicine->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('medicine_name')
@@ -31,18 +31,39 @@
                             </div>
                             <div class="form-group">
                                 <label>Quantity (Pis)</label>
-                                <input class="form-control" value="{{$EditMedicineInvoice->medicine_quantity}}" name="medicine_quantity" type="number" required>
+                                <input class="form-control medicine_quantityy" value="{{$EditMedicineInvoice->medicine_quantity}}" id="medicine_quantityy" value="1"
+                                    name="medicine_quantity" type="number" required>
                                 @error('medicine_quantity')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                            </div>                      
+                            </div>
                             <div class="form-group">
                                 <label>Price</label>
-                                <input class="form-control" value="{{$EditMedicineInvoice->medicine_price}}" name="medicine_price" type="text" required>
+                                <input id="medicine_price" value="{{$EditMedicineInvoice->medicine_price}}" class="form-control" name="medicine_price" type="number"
+                                    required>
                                 @error('medicine_price')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                            </div>                      
+                                <span id="MedunitPrice" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Discount (%)</label>
+                                <input id="medicine_discount" value="{{$EditMedicineInvoice->medicine_discount}}" class="form-control medicine_discountt" name="medicine_discount" type="number"
+                                    required>
+                                @error('medicine_discount')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                               
+                            </div>
+                            <div class="form-group">
+                                <label>Grand Total</label>
+                                <input id="medicine_total" value="{{$EditMedicineInvoice->medicine_total}}" class="form-control medicine_totall" name="medicine_total" type="text"
+                                    required>
+                                @error('medicine_total')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                              
+                            </div>                    
                             <div class="m-t-20 text-center">
                                 <button type="submit" class="btn btn-primary submit-btn">Add Medicine</button>
                             </div>
@@ -53,5 +74,115 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        $(document).ready(function() {
+            $('#MedicineName').on('change', function(e) {
+                var Medicine_id = e.target.value;
+                $.ajax({
+                    url: "{{ url('/admin/mediprice') }}" + '/' + Medicine_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $.each(data, function(key, value) {
+                            //alert(value.id)
+                            $('#medicine_price').empty();
+                            $('#MedunitPrice').text('Unit Price = ' + value.price);
+                            var UnitPrice = value.price;
+                            var medicine_quantity = $('#medicine_quantityy').val();
+                            var Total = UnitPrice * medicine_quantity;
+                            $('#medicine_price').val(Total);
+
+                            var DiscountVal =  $('#medicine_discount').val();
+                            var f =  parseInt(DiscountVal);
+                             
+                            var discount = Total *  f/100 ;
+                            
+                            $('#medicine_total').val(Total - discount);
+                        });
+                    }
+                })
+
+            });
+        });
+    </script> 
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function() {
+            $('.medicine_quantityy').on('keypress change keydown', function() {
+                var Medicine_id = $('#MedicineName').val();
+                $.ajax({
+                    url: "{{ url('/admin/mediprice') }}" + '/' + Medicine_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $.each(data, function(key, value) {
+                            //alert(value.id)
+                            $('#medicine_price').empty();
+                            $('#MedunitPrice').text('Unit Price = ' + value.price);
+                            var UnitPrice = value.price;
+                            var medicine_quantity = $('#medicine_quantityy').val();
+                            var Total = UnitPrice * medicine_quantity;
+                            $('#medicine_price').val(Total);
+
+                            var DiscountVal =  $('.medicine_discountt').val();
+                            var f =  parseInt(DiscountVal);
+                             
+                            var discount = Total *  f/100 ;
+                            
+                            $('.medicine_totall').val(Total - discount);
+                        });
+                    }
+                })
+
+               // alert('sdsd')
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function() {
+            $('.medicine_discountt').on('keypress change keydown', function() {
+                var Medicine_id = $('#MedicineName').val();
+                $.ajax({
+                    url: "{{ url('/admin/mediprice') }}" + '/' + Medicine_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $.each(data, function(key, value) {
+                            //alert(value.id)
+                            $('#medicine_price').empty();
+                            $('#MedunitPrice').text('Unit Price = ' + value.price);
+                            var UnitPrice = value.price;
+                            var medicine_quantity = $('#medicine_quantityy').val();
+                            var Total = UnitPrice * medicine_quantity;
+                            $('#medicine_price').val(Total);
+
+                            var DiscountVal =  $('.medicine_discountt').val();
+                            var f =  parseInt(DiscountVal);
+                             
+                            var discount = Total *  f/100 ;
+                            
+                            $('.medicine_totall').val(Total - discount);
+                        });
+                    }
+                })
+
+               // alert('sdsd')
+            });
+        });
+    </script>
 @endsection

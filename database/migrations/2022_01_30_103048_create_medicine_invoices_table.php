@@ -18,6 +18,8 @@ class CreateMedicineInvoicesTable extends Migration
             $table->string('medicine_name');
             $table->string('medicine_quantity');
             $table->string('medicine_price');
+            $table->string('medicine_discount');
+            $table->string('medicine_total');
             $table->timestamps();
         });
     }
