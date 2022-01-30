@@ -44,14 +44,21 @@
                             @foreach ($Employees as $Employee)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $Employee->emp_role_id }}</td>
+                                    <td>
+                                        @php $EmployeeRole=collect($EmployeeRoles)->where('id',$Employee->emp_role_id)->first() 
+@endphp
+                                        {{ $EmployeeRole->name }}
+                                    </td>
                                     <td>{{ $Employee->emp_name }}</td>
                                     <td>{{ $Employee->emp_phone }}</td>
                                     <td>{{ $Employee->emp_sex }}</td>
                                     <td>{{ $Employee->emp_email }}</td>
                                     <td>{{ $Employee->emp_password }}</td>
                                     <td>{{ $Employee->emp_joining_date }}</td>
-                                    <td>{{ $Employee->emp_status }}</td>
+                                    <td>
+                                        <span class="custom-badge @if ($Employee->emp_status == 'active') ? status-green @else status-red @endif">{{ $Employee->emp_status }}</span>
+                                        
+                                    </td>
                                     <td>{{ $Employee->emp_address }}</td>
                                     <td>{{ $Employee->emp_img }}</td>
                                     <td>{{ $Employee->emp_s_basic }}</td>

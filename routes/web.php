@@ -11,6 +11,7 @@ use App\Http\Controllers\backend\setup\BedController;
 use App\Http\Controllers\backend\medicine\MedicineGroupController;
 use App\Http\Controllers\backend\medicine\MedicineCompanyController;
 use App\Http\Controllers\backend\medicine\MedicineController;
+use App\Http\Controllers\backend\medicine\MedicineInvoiceController;
 use App\Http\Controllers\backend\patient\OutPatientController;
 use App\Http\Controllers\backend\doctor\DoctorController;
 use App\Http\Controllers\backend\doctor\PrescriptionController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\backend\lab\LabDepartmentController;
 use App\Http\Controllers\backend\lab\LabTeastController;
 use App\Http\Controllers\backend\hrm\EmployeeRoleController;
 use App\Http\Controllers\backend\hrm\EmployeeController;
+use App\Http\Controllers\backend\AllAjaxController;
 
 
 /*
@@ -68,6 +70,7 @@ Route::resource('/admin/bed', BedController::class );
 Route::resource('/admin/medicinegroup', MedicineGroupController::class );
 Route::resource('/admin/medicinecompany', MedicineCompanyController::class );
 Route::resource('/admin/medicine', MedicineController::class );
+Route::resource('/admin/medicineinvoice', MedicineInvoiceController::class );
 Route::resource('/admin/outpatient', OutPatientController::class );
 Route::resource('/admin/inpatient', OutPatientController::class );
 Route::resource('/admin/doctor', DoctorController::class );
@@ -87,6 +90,7 @@ Route::resource('/admin/employee', EmployeeController::class );
 
 
 
-
+// Ajax Route
+Route::GET('/admin/mediprice/{id}', [AllAjaxController::class, 'MediPrice'])->name('MediPrice');
 // Backeend Routes
 

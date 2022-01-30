@@ -119,7 +119,8 @@
                     <ul style="display: none;">
                         <li><a href="{{Route('medicinegroup.index')}}">Medicine Group</a></li>
                         <li><a href="{{Route('medicinecompany.index')}}">Medicine Comapany</a></li>                    
-                        <li><a href="{{Route('medicine.index')}}">Medicine List</a></li>                    
+                        <li><a href="{{Route('medicine.index')}}">Medicine List</a></li>  
+                        <li><a href="{{Route('medicineinvoice.index')}}">Invoices</a></li>                  
 
                     </ul>
                 </li>                                                        

@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Employee  Edit Form</h4>
                         <p class="card-text">
-                        <form action="{{ route('asset.update', $EditEmployee->id) }}" method="post">
+                        <form action="{{ route('employee.update', $EditEmployee->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')                  
                             <div class="row">

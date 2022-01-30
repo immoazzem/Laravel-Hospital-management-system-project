@@ -16,8 +16,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        $EmployeeRoles = EmployeeRole::all();
         $Employees = Employee::all();
-        return view('backend/hrm/employee', compact('Employees'));
+        return view('backend/hrm/employee', compact('Employees', 'EmployeeRoles'));
     }
 
     /**
@@ -156,17 +157,18 @@ class EmployeeController extends Controller
         
         if ($request->file('emp_img')) {
 
-            $path = storage_path().'/app/public/images/employee';
-    
-            $file_old = $path . $UpdateEmployee->emp_img;
-            unlink($file_old);
-
+            
+            if($UpdateEmployee->emp_img){
+                $path = storage_path().'app/public/images/employee';
+                $file_old = $path . $UpdateEmployee->emp_img;
+                unlink($file_old);
+            }
             $photoname = $request->file('emp_img')->getClientOriginalName();
             $request->emp_img->storeAs('public/images/employee', $photoname);
             $UpdateEmployee->emp_img = $photoname; 
            }
        
-        $UpdateEmployee->update();
+        $UpdateEmployee->save();
         return redirect('admin/employee')->with('success', 'Employee Update successfully.');
     }
 

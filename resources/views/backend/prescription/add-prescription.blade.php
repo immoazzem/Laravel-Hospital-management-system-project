@@ -1,6 +1,17 @@
 @extends('backend/layouts/master')
 @section('add-doctor')
 
+
+{{-- Editor --}}
+{{-- 
+<link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/css/prettify.css">
+<link rel="stylesheet" type="text/css" href="https://jhollingworth.github.io/bootstrap-wysihtml5//src/bootstrap-wysihtml5.css"> --}}
+
+{{-- Editor --}}
+
+
+
     <div class="content">
         <div class="row">
             <div class="col-sm-5 col-5">
@@ -114,6 +125,14 @@
             </div>
         </div>
     </div>
+
+     {{-- Editor --}}
+ {{-- <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/wysihtml5-0.3.0.js"></script>
+ <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/jquery-1.7.2.min.js"></script>
+ <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/prettify.js"></script>
+ <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//lib/js/bootstrap.min.js"></script>
+ <script src="https://jhollingworth.github.io/bootstrap-wysihtml5//src/bootstrap-wysihtml5.js"></script> --}}
+ {{-- Editor --}}
     <script type="text/javascript">
          $(document).ready(function() {
           $('.textarea').wysihtml5();
