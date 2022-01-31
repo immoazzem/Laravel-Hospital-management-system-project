@@ -1,4 +1,4 @@
-<div class="sidebar" id="sidebar">
+<div class="sidebar bg-light" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
@@ -53,7 +53,43 @@
                         <li><a href="{{Route('bedcategory.index')}}">Bed Category</a></li>
                         <li><a href="{{Route('bed.index')}}">Bed List</a></li>
                     </ul>
-                </li>            
+                </li> 
+                <li class="menu-title">Pharmacy Management</li>           
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-medkit"></i> <span> Medicine </span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{Route('medicinegroup.index')}}">Medicine Group</a></li>
+                        <li><a href="{{Route('medicinecompany.index')}}">Medicine Comapany</a></li>                    
+                        <li><a href="{{Route('medicine.index')}}">Medicine List</a></li>  
+                        <li><a href="{{Route('medicineinvoice.index')}}">Invoices</a></li>                  
+
+                    </ul>
+                </li> 
+                <li class="menu-title">Office Management</li>            
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-bed"></i> <span> Assets </span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{Route('asset.index')}}">Assets List</a></li>
+                        <li><a href="{{Route('assetcategory.index')}}">Assets Category</a></li>
+                    </ul>
+                </li> 
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-heartbeat"></i> <span> Blood Donor</span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">            
+                        
+                        <li><a href="{{Route('bloodbank.index')}}">Blood Bank</a></li>
+                        <li><a href="{{Route('blooddonor.index')}}">Blood Donor List</a></li>
+                        <li><a href="{{Route('bloodgroup.index')}}">Blood Group List</a></li>
+                    </ul>
+                </li>                           
+                
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-child"></i> <span> Lab Test </span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">            
+                        <li><a href="{{Route('labdepartment.index')}}">Lab Test Category</a></li>
+                        <li><a href="{{Route('labtest.index')}}">Lab Test List</a></li>
+                    </ul>
+                </li>                   
                 <li class="menu-title">Accounts Management</li>       
                 <li class="submenu">
                     <a href="#"><i class="fa fa-money"></i> <span> HRM Management </span> <span class="menu-arrow"></span></a>
@@ -88,42 +124,7 @@
                         <li><a href="salary-view.html"> Payslip </a></li>
                     </ul>
                 </li>
-                <li class="menu-title">Office Management</li>            
-                <li class="submenu">
-                    <a href="#"><i class="fa fa-bed"></i> <span> Assets </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="{{Route('asset.index')}}">Assets List</a></li>
-                        <li><a href="{{Route('assetcategory.index')}}">Assets Category</a></li>
-                    </ul>
-                </li> 
-                <li class="submenu">
-                    <a href="#"><i class="fa fa-heartbeat"></i> <span> Blood Donor</span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">            
-                        
-                        <li><a href="{{Route('bloodbank.index')}}">Blood Bank</a></li>
-                        <li><a href="{{Route('blooddonor.index')}}">Blood Donor List</a></li>
-                        <li><a href="{{Route('bloodgroup.index')}}">Blood Group List</a></li>
-                    </ul>
-                </li>                           
-                
-                <li class="submenu">
-                    <a href="#"><i class="fa fa-child"></i> <span> Lab Test </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">            
-                        <li><a href="{{Route('labdepartment.index')}}">Lab Test Category</a></li>
-                        <li><a href="{{Route('labtest.index')}}">Lab Test List</a></li>
-                    </ul>
-                </li>      
-                <li class="menu-title">Pharmacy Management</li>           
-                <li class="submenu">
-                    <a href="#"><i class="fa fa-medkit"></i> <span> Medicine </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="{{Route('medicinegroup.index')}}">Medicine Group</a></li>
-                        <li><a href="{{Route('medicinecompany.index')}}">Medicine Comapany</a></li>                    
-                        <li><a href="{{Route('medicine.index')}}">Medicine List</a></li>  
-                        <li><a href="{{Route('medicineinvoice.index')}}">Invoices</a></li>                  
-
-                    </ul>
-                </li>                                                        
+                                                                    
                 <li class="menu-title">Extras</li>                                                                 
                 <li class="submenu">
                     <a href="#"><i class="fa fa-commenting-o"></i> <span> Blog</span> <span class="menu-arrow"></span></a>

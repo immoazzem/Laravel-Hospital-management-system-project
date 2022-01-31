@@ -10,7 +10,6 @@
                 <a href="{{ route('medicineinvoice.create') }}" class="btn btn-primary btn-rounded"><i
                         class="fa fa-plus"></i>Create Invoice
                 </a>
-                <button id="medicineInvoicePrint" class="btn btn-success btn-rounded">Print</button>
             </div>
 
         </div>
@@ -24,6 +23,7 @@
                         <thead>
                             <tr>
                                 <th>SL</th>
+                                <th>Invoice No</th>
                                 <th>Name of Medicine</th>
                                 <th>Ouantity (Pis)</th>
                                 <th>Price</th>
@@ -37,6 +37,7 @@
                             @foreach ($MedicineInvoice as $MedicineInvoic)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $MedicineInvoic->invoice_no }}</td>
                                     <td>
                                         @php $Medicine = collect($Medicines)
                                                 ->where('id', $MedicineInvoic->medicine_name)
@@ -55,8 +56,13 @@
                                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item"
+                                                    href="{{ URL::to('admin/medicineinvoice/'.$MedicineInvoic->id) }}"><i
+                                                        class="fa fa-eye m-r-5 btn-outline-primary btn"></i> View
+                                                </a>
+                                                <a class="dropdown-item"
                                                     href="{{ URL::to('admin/medicineinvoice/' . $MedicineInvoic->id . '/edit') }}"><i
-                                                        class="fa fa-pencil m-r-5 btn-outline-primary btn"></i> Edit</a>
+                                                        class="fa fa-pencil m-r-5 btn-outline-primary btn"></i> Edit
+                                                </a>
                                                 <a class="dropdown-item" href="#">
                                                     <form
                                                         action="{{ route('medicineinvoice.destroy', $MedicineInvoic->id) }}"
@@ -80,6 +86,7 @@
                         <tfoot>
                             <tr>
                                 <th>SL</th>
+                                <th>Invoice No</th>
                                 <th>Name of Medicine</th>
                                 <th>Ouantity (Pis)</th>
                                 <th>Price</th>
@@ -94,18 +101,5 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $('#medicineInvoicePrint').click(function(e) {
-                e.preventDefault();
-
-                var print_ = document.getElementById("#datatable");
-                win = window.open("");
-                win.document.write(print_.outerHTML);
-                win.print();
-                win.close();
-
-            });
-        });
-    </script>
+   
 @endsection

@@ -15,6 +15,7 @@ class CreateMedicineInvoicesTable extends Migration
     {
         Schema::create('medicine_invoices', function (Blueprint $table) {
             $table->id();
+            $table->string('invoice_no');
             $table->string('medicine_name');
             $table->string('medicine_quantity');
             $table->string('medicine_price');

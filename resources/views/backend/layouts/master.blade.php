@@ -24,7 +24,7 @@
     <div class="container content-header " style="background-color: #dde6ed">
         <div class="row d-flex align-items-center ">
             <div class="col-md-3 font-weight-bold" style="border-right: 5px solid red;">
-                <h2 class="page-title text-danger">{{ strtoupper(collect(request()->segments())->last())}}</h2>              
+                <h2 class="page-title text-danger pt-2 text-center">{{ strtoupper(collect(request()->segments())->last())}}</h2>              
             </div>
             <div class="col-md-9">
                 <div class="d-inline-block align-items-center">

@@ -72,7 +72,12 @@ class MedicineInvoiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $Medicines =  Medicine::all();
+        $ShowMedicineInvoice = MedicineInvoice::find($id);
+        return view('backend/medicine/medicine/show-medicineinvoice', compact('ShowMedicineInvoice', 'Medicines'));
+
+
+
     }
 
     /**

@@ -14,7 +14,7 @@
                   </li>
                 </ul>
             </div>
-              &copy; 2022 <a href="#">School Management System</a>. All Rights Reserved.
+              &copy; 2022 <a href="#">Hospital Management System</a>. All Rights Reserved.
         </footer>
     </div>
 </div>

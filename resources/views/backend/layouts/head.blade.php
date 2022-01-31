@@ -82,3 +82,8 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
     });
 </script>
 {{-- Print Table --}}
+
+
+{{-- Print Invoice of MEdicine --}}
+@include('backend/layouts/script')
+{{-- Print Invoice of MEdicine --}}

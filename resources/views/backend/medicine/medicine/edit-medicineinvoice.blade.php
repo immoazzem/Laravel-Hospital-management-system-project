@@ -4,7 +4,13 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-5 col-5">
-                <h4 class="page-title">Medicine</h4>
+                <h4 class="page-title">Medicine Invoice</h4>
+            </div>
+            <div class="col-sm-7 col-7 text-right m-b-30">
+
+                <a href="{{ route('medicineinvoice.index') }}" class="btn btn-primary btn-rounded"><i
+                        class="fa fa-eye"></i> &nbsp; Show Invoice
+                </a>
             </div>
         </div>
         <div class="row">
@@ -12,7 +18,7 @@
                 <div class="card text-left">
                     <img class="card-img-top" src="holder.js/100px180/" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Medicine Add Form</h4>
+                        <h4 class="card-title">Medicine Invoice Form</h4>
                         <p class="card-text">
                         <form action="{{ route('medicineinvoice.update', $EditMedicineInvoice->id) }}" method="post">
                             @csrf
