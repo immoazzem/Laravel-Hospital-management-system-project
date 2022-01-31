@@ -23,11 +23,19 @@
                                 <th>Sl</th>
                                 <th>PID</th>
                                 <th>Name</th>
+                                <th>Gender</th>
+                                <th>Phone</th>
                                 <th>Guardian Name</th>
                                 <th>Guardian Phone</th>
+                                <th>Address</th>
+                                <th>Blood</th>
                                 <th>Case</th>
+                                <th>Admission Date</th>
                                 <th>Doctor</th>
                                 <th>Bed</th>
+                                <th>Status</th>
+                                <th>Reference</th>
+                                <th>Casuality</th>
                                 <th>Action</th>                            
                             </tr>
                         </thead>
@@ -35,11 +43,30 @@
                             @foreach ($InPatients as $InPatient)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $InPatient->name }}</td>
-                                <td>{{ $InPatient->price }}</td>
-                                <td>{{ $InPatient->mg }}</td>
-                                <td>{{ $InPatient->group }}</td>
-                                <td>{{ $InPatient->company }}</td>
+                                <td>{{ $InPatient->in_p_s }}</td>
+                                <td>{{ $InPatient->in_p_name }}</td>
+                                <td>{{ $InPatient->in_p_sex }}</td>
+                                <td>{{ $InPatient->in_p_phone }}</td>
+                                <td>{{ $InPatient->in_p_guardian_name }}</td>
+                                <td>{{ $InPatient->in_p_guardian_phone }}</td>
+                                <td>{{ $InPatient->in_p_address }}</td>
+                                <td>{{ $InPatient->in_p_blood }}</td>
+                                <td>{{ $InPatient->in_p_case }}</td>
+                                <td>{{ $InPatient->in_p_admission_date }}</td>
+                                <td>
+                                    @php $Doctor=collect($Doctors)->where('id', $InPatient->in_p_doc_id )->first() 
+                                    @endphp
+                                    {{ $Doctor->doc_name }}
+                                </td>
+                                <td>
+                                    @php $Bed=collect($Beds)->where('id', $InPatient->in_p_bed_id )->first() 
+                                    @endphp
+                                    {{ $Bed->bed_no}}
+                                </td>
+                                <td>
+                                    <span class="custom-badge @if ($InPatient->in_p_bed_status == 'active') ? status-green @else status-red @endif">{{ $InPatient->in_p_bed_status }}</span>
+                                <td>{{ $InPatient->in_p_reference }}</td>
+                                <td>{{ $InPatient->in_p_casualty }}</td>
                                 <td class="text-right">
                                     <div class="dropdown dropdown-action">
                                         <a href="#" class="action-icon dropdown-toggle " data-toggle="dropdown"
@@ -71,12 +98,20 @@
                                 <th>Sl</th>
                                 <th>PID</th>
                                 <th>Name</th>
+                                <th>Gender</th>
+                                <th>Phone</th>
                                 <th>Guardian Name</th>
                                 <th>Guardian Phone</th>
+                                <th>Address</th>
+                                <th>Blood</th>
                                 <th>Case</th>
+                                <th>Admission Date</th>
                                 <th>Doctor</th>
                                 <th>Bed</th>
-                                <th>Action</th>  
+                                <th>Status</th>
+                                <th>Reference</th>
+                                <th>Casuality</th>
+                                <th>Action</th>   
                             </tr>
                         </tfoot>
                     </table>

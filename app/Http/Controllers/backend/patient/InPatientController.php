@@ -5,6 +5,10 @@ namespace App\Http\Controllers\backend\patient;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\backend\InPatient;
+use App\Models\backend\BloodGroup;
+use App\Models\backend\Doctors;
+use App\Models\backend\BedCategory;
+use App\Models\backend\Bed;
 
 class InPatientController extends Controller
 {
@@ -15,9 +19,11 @@ class InPatientController extends Controller
      */
     public function index()
     {
-
+        $Doctors = Doctors::all();
+        $BedCategorys = BedCategory::all();
+        $Beds = Bed::all();
         $InPatients = InPatient::all();
-        return view('backend/patient/inpatient', compact('InPatients'));
+        return view('backend/patient/inpatient', compact('InPatients', 'Beds', 'Doctors'));
     }
 
     /**
@@ -27,7 +33,11 @@ class InPatientController extends Controller
      */
     public function create()
     {
-        return view('backend/patient/add-inpatient');
+        $BloodGroups = BloodGroup::all();
+        $Doctors = Doctors::all();
+        $BedCategorys = BedCategory::all();
+        $Beds = Bed::all();
+        return view('backend/patient/add-inpatient', compact('BloodGroups', 'Doctors', 'BedCategorys', 'Beds'));
     }
 
     /**
@@ -51,30 +61,32 @@ class InPatientController extends Controller
             'in_p_case'           => 'required',
             'in_p_doc_id'         => 'required',
             'in_p_bed_category_id'=> 'required',
-            'in_p_bed_id'         => 'required'                           
+            'in_p_bed_id'         => 'required',                         
+            'in_p_bed_status'         => 'required'                           
         ]);
-        // $info = array(
-        //     'message' => "Holidays Class Added successfull",
-        //     'alert-type' => 'success'
-        // );
-
-       // $id = IdGenerator::generate(['table' => 'out_patients', 'field'=>'out_p_id', 'length' => 8, 'prefix' =>'OUT-PET-']);
-
-       // $last = 1;
-        //$last = DB::table('out_patients')->latest()->first();
-       
         $InPatient = new InPatient;
-        $InPatient->out_p_name = $request->out_p_name; 
-        $InPatient->out_p_father_name = $request->out_p_father_name; 
-        $InPatient->out_p_gender = $request->out_p_gender; 
-        $InPatient->out_p_age = $request->out_p_age; 
-        $InPatient->out_p_phone = $request->out_p_phone; 
-        $InPatient->out_p_blood = $request->out_p_blood; 
-        $InPatient->out_p_height = $request->out_p_height; 
-        $InPatient->out_p_weight = $request->out_p_weight; 
-        $InPatient->out_p_bp = $request->out_p_bp; 
-        $InPatient->out_p_symptoms = $request->out_p_symptoms; 
-        $InPatient->out_p_address = $request->out_p_address; 
+        $InPatient->in_p_name = $request->in_p_name; 
+        $InPatient->in_p_sex = $request->in_p_sex; 
+        $InPatient->in_p_age = $request->in_p_age; 
+        $InPatient->in_p_phone = $request->in_p_phone; 
+        $InPatient->in_p_guardian_name = $request->in_p_guardian_name; 
+        $InPatient->in_p_guardian_phone = $request->in_p_guardian_phone; 
+        $InPatient->in_p_blood = $request->in_p_blood; 
+        $InPatient->in_p_height = $request->in_p_height; 
+        $InPatient->in_p_weight = $request->in_p_weight; 
+        $InPatient->in_p_bed_status = $request->in_p_bed_status; 
+        $InPatient->in_p_bp = $request->in_p_bp; 
+        $InPatient->in_p_symptoms = $request->in_p_symptoms; 
+        $InPatient->in_p_address = $request->in_p_address; 
+        $InPatient->in_p_admission_date = $request->in_p_admission_date; 
+        $InPatient->in_p_case = $request->in_p_case; 
+        $InPatient->in_p_casualty = $request->in_p_casualty; 
+        $InPatient->in_p_old_patient = $request->in_p_old_patient; 
+        $InPatient->in_p_reference = $request->in_p_reference; 
+        $InPatient->in_p_doc_id = $request->in_p_doc_id; 
+        $InPatient->in_p_bed_category_id = $request->in_p_bed_category_id; 
+        $InPatient->in_p_bed_id = $request->in_p_bed_id; 
+        $InPatient->in_p_note = $request->in_p_note; 
         $InPatient->save();
         return redirect('admin/inpatient')->with('success', 'InPatient created successfully.');
     }
@@ -98,10 +110,12 @@ class InPatientController extends Controller
      */
     public function edit($id)
     {
-        // $MedicineCompanys = MedicineCompany::all();
-        // $MedicineGroups =  MedicineGroup::all();
+        $BloodGroups = BloodGroup::all();
+        $Doctors = Doctors::all();
+        $BedCategorys = BedCategory::all();
+        $Beds = Bed::all();
         $EditInPatient = InPatient::find($id);    
-        return view('backend/patient/edit-InPatient', compact('EditInPatient'));
+        return view('backend/patient/edit-inpatient', compact( 'EditInPatient', 'BloodGroups', 'Doctors', 'BedCategorys', 'Beds'));
     }
 
     /**
@@ -114,14 +128,20 @@ class InPatientController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'out_p_name'    => 'required|string|max:50',
-	    	'out_p_age'     => 'required|integer',
-	    	'out_p_address' => 'required',
-	    	'out_p_phone'   => 'required',
-	    	'out_p_gender'     => 'required',
-	    	'out_p_blood'   => 'required',                            
-	    	'out_p_symptoms'   => 'string|max:200',                            
-	    	'out_p_address'   => 'string|max:150',                            
+            'in_p_name'           => 'required',
+            'in_p_sex'            => 'required',
+            'in_p_age'            => 'required',
+            'in_p_phone'          => 'required',
+            'in_p_guardian_name'  => 'required',
+            'in_p_guardian_phone' => 'required',
+            'in_p_blood'          => 'required',
+            'in_p_address'        => 'required',
+            'in_p_admission_date' => 'required',
+            'in_p_case'           => 'required',
+            'in_p_doc_id'         => 'required',
+            'in_p_bed_category_id'=> 'required',
+            'in_p_bed_id'         => 'required',                         
+            'in_p_bed_status'         => 'required'                          
         ]);
 
         // $info = array(
@@ -130,17 +150,28 @@ class InPatientController extends Controller
         // );
 
         $UpdateInPatient = InPatient::find($id);
-        $UpdateInPatient->out_p_name = $request->out_p_name; 
-        $UpdateInPatient->out_p_father_name = $request->out_p_father_name; 
-        $UpdateInPatient->out_p_gender = $request->out_p_gender; 
-        $UpdateInPatient->out_p_age = $request->out_p_age; 
-        $UpdateInPatient->out_p_phone = $request->out_p_phone; 
-        $UpdateInPatient->out_p_blood = $request->out_p_blood; 
-        $UpdateInPatient->out_p_height = $request->out_p_height; 
-        $UpdateInPatient->out_p_weight = $request->out_p_weight; 
-        $UpdateInPatient->out_p_bp = $request->out_p_bp; 
-        $UpdateInPatient->out_p_symptoms = $request->out_p_symptoms; 
-        $UpdateInPatient->out_p_address = $request->out_p_address; 
+        $UpdateInPatient->in_p_name = $request->in_p_name; 
+        $UpdateInPatient->in_p_sex = $request->in_p_sex; 
+        $UpdateInPatient->in_p_age = $request->in_p_age; 
+        $UpdateInPatient->in_p_phone = $request->in_p_phone; 
+        $UpdateInPatient->in_p_guardian_name = $request->in_p_guardian_name; 
+        $UpdateInPatient->in_p_guardian_phone = $request->in_p_guardian_phone; 
+        $UpdateInPatient->in_p_blood = $request->in_p_blood; 
+        $UpdateInPatient->in_p_height = $request->in_p_height; 
+        $UpdateInPatient->in_p_weight = $request->in_p_weight; 
+        $UpdateInPatient->in_p_bed_status = $request->in_p_bed_status; 
+        $UpdateInPatient->in_p_bp = $request->in_p_bp; 
+        $UpdateInPatient->in_p_symptoms = $request->in_p_symptoms; 
+        $UpdateInPatient->in_p_address = $request->in_p_address; 
+        $UpdateInPatient->in_p_admission_date = $request->in_p_admission_date; 
+        $UpdateInPatient->in_p_case = $request->in_p_case; 
+        $UpdateInPatient->in_p_casualty = $request->in_p_casualty; 
+        $UpdateInPatient->in_p_old_patient = $request->in_p_old_patient; 
+        $UpdateInPatient->in_p_reference = $request->in_p_reference; 
+        $UpdateInPatient->in_p_doc_id = $request->in_p_doc_id; 
+        $UpdateInPatient->in_p_bed_category_id = $request->in_p_bed_category_id; 
+        $UpdateInPatient->in_p_bed_id = $request->in_p_bed_id; 
+        $UpdateInPatient->in_p_note = $request->in_p_note; 
         $UpdateInPatient->save();
         return redirect('admin/inpatient')->with('success', 'InPatient Update successfully.');
     }

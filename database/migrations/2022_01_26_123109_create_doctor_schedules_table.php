@@ -19,6 +19,7 @@ class CreateDoctorSchedulesTable extends Migration
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->string('room');
             $table->timestamps();
         });
     }

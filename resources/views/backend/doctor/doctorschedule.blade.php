@@ -21,6 +21,7 @@
                                 <th>Date</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
+                                <th>Room</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -32,6 +33,7 @@
                                 <td>{{ $DoctorSchedule->date }}</td>
                                 <td>{{ $DoctorSchedule->start_time }}</td>
                                 <td>{{ $DoctorSchedule->end_time }}</td>
+                                <td>{{ $DoctorSchedule->room }}</td>
                                 <td class="text-right">
                                     <div class="dropdown dropdown-action">
                                         <a href="#" class="action-icon dropdown-toggle " data-toggle="dropdown"
@@ -65,6 +67,7 @@
                                 <th>Date</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
+                                <th>Room</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -109,6 +112,13 @@
                                 <label>End Time</label>
                                 <input class="form-control" name="end_time" type="time">
                                 @error('end_time')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Room</label>
+                                <input class="form-control" name="room" type="number">
+                                @error('room')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>

@@ -48,6 +48,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label>Room</label>
+                                <input class="form-control" value="{{$EditDoctorSchedule->room}}" name="room" type="number">
+                                @error('room')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label>End Time</label>
                                 <input class="form-control" value="{{$EditDoctorSchedule->end_time}}" name="end_time" type="time">
                                 @error('end_time')

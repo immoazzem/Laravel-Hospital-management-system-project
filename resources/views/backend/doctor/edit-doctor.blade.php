@@ -4,11 +4,11 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-5 col-5">
-                <h4 class="page-title">Edit Out Patient</h4>
+                <h4 class="page-title">Edit Doctor</h4>
             </div>
             <div class="col-sm-7 col-7 text-right m-b-30">
                 <a href="{{ route('doctor.index') }}" class="btn btn-primary btn-rounded"><i class="fa fa-show"></i>
-                    Show Out Patient</a>
+                    Show Doctor</a>
             </div>
         </div>
         <div class="row">
@@ -16,7 +16,7 @@
                 <div class="card text-left">
                     <img class="card-img-top" src="holder.js/100px180/" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Out Patient Edit Form</h4>
+                        <h4 class="card-title">Doctor Edit Form</h4>
                         <p class="card-text">
                         <form action="{{ route('doctor.update', $EditDoctors->id) }}" method="post" enctype="multipart/form-data"> 
                             @csrf
@@ -143,7 +143,7 @@
                                 </div>
                             </div>                          
                             <div class="m-t-20 text-center">
-                                <button type="submit" class="btn btn-primary submit-btn">Update Out Patient</button>
+                                <button type="submit" class="btn btn-primary submit-btn">Update Doctor</button>
                             </div>
                         </form>
                         </p>

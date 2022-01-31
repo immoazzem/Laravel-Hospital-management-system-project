@@ -45,6 +45,7 @@ class DoctorScheduleController extends Controller
             'date'    => 'required|date',
             'start_time'    => 'required',
             'end_time' => 'required',           
+            'room' => 'required',           
         ]);
         // $info = array(
         //     'message' => "Holidays Class Added successfull",
@@ -56,6 +57,7 @@ class DoctorScheduleController extends Controller
         $DoctorSchedule->date = $request->date;
         $DoctorSchedule->start_time = $request->start_time;
         $DoctorSchedule->end_time = $request->end_time;
+        $DoctorSchedule->room = $request->room;
         $DoctorSchedule->save();
         return redirect('admin/doctorschedule')->with('success', 'Doctors Schedule created successfully.');
     }
@@ -97,7 +99,8 @@ class DoctorScheduleController extends Controller
             'doc_name'    => 'required|string|max:50',
             'date'    => 'required|date',
             'start_time'    => 'required',
-            'end_time' => 'required',    
+            'end_time' => 'required',  
+            'room' => 'required',       
         ]);
 
         // $info = array(
@@ -110,6 +113,7 @@ class DoctorScheduleController extends Controller
         $UpdateDoctorSchedule->date = $request->date;
         $UpdateDoctorSchedule->start_time = $request->start_time;
         $UpdateDoctorSchedule->end_time = $request->end_time;
+        $UpdateDoctorSchedule->room = $request->room;
         $UpdateDoctorSchedule->update();
         return redirect('admin/doctorschedule')->with('success', 'Doctors Schedule Update successfully.');
     }

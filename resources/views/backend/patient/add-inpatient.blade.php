@@ -23,27 +23,27 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <label>Patient Name</label>
-                                    <input type="text" class="form-control" id="in_p_name" name="in_p_name" placeholder="Patient Name"/>                                   
-                                     @error('out_p_name')
+                                    <input type="text" class="form-control" id="in_p_name" name="in_p_name"/>
+                                    @error('in_p_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label>Guardian Name</label>
-                                    <input type="text" class="form-control" id="in_p_guardian_name" name="in_p_guardian_name" placeholder="Patient Name"/>
-                                    @error('out_p_father_name')
+                                    <input type="text" class="form-control" id="in_p_guardian_name"
+                                        name="in_p_guardian_name"/>
+                                    @error('in_p_guardian_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label>Guardian Phone</label>
-                                    <input type="text" class="form-control" id="in_p_guardian_phone" name="in_p_guardian_phone" type="text" placeholder="Phone"/>
-                                    @error('out_p_father_name')
+                                    <input type="text" class="form-control" id="in_p_guardian_phone"
+                                        name="in_p_guardian_phone" type="text"/>
+                                    @error('in_p_guardian_phone')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="form-group row">
                                 <div class="col-md-6 ">
                                     <label>Gender</label>
                                     <div class="form-control">
@@ -51,7 +51,7 @@
                                         <input name="in_p_sex" type="radio" value="male"> &nbsp; Male &nbsp;
                                         <input name="in_p_sex" type="radio" value="female"> &nbsp; Female
                                     </div>
-                                    @error('out_p_gender')
+                                    @error('in_p_sex')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -62,11 +62,9 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="form-group row">
                                 <div class="col-md-6">
                                     <label>Phone</label>
-                                    <input class="form-control" name="in_p_phone" type="number" required>
+                                    <input class="form-control" name="in_p_phone" type="text">
                                     @error('in_p_phone')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -75,17 +73,15 @@
                                     <label>Blood Group</label>
                                     <select name="in_p_blood" id="" class="form-control" required>
                                         <option value="" selected disabled>--Select Blood--</option>
-    
+
                                         @foreach ($BloodGroups as $BloodGroup)
-                                            <option value="{{ $BloodGroup->name }}" @if($BloodGroup->name == $EditBloodBank->blood_bag_name)? selected : '' @endIf>{{ $BloodGroup->name }}</option>
+                                            <option value="{{ $BloodGroup->name }}">{{ $BloodGroup->name }}</option>
                                         @endforeach
-                                    </select>                               
+                                    </select>
                                     @error('in_p_blood')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="form-group row">
                                 <div class="col-md-6">
                                     <label>Height(Cm) </label>
                                     <input class="form-control" name="in_p_height" type="number" required>
@@ -100,121 +96,133 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>BP</label>
-                                    <input class="form-control" name="in_p_bp" type="text" required>
+                                    <input class="form-control" name="in_p_bp" type="number" required>
                                     @error('in_p_bp')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Symtomps</label>
-                                    <textarea  class="form-control" name="in_p_symptoms" id="" cols="30" rows="3" required></textarea>
+                                    <textarea class="form-control" name="in_p_symptoms" id="" cols="30" rows="3"
+                                        required></textarea>
                                     @error('in_p_symptoms')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Notes</label>
-                                    <textarea  class="form-control" name="in_p_note" id="" cols="30" rows="3" required></textarea>
+                                    <textarea class="form-control" name="in_p_note" id="" cols="30" rows="3"
+                                        required></textarea>
                                     @error('in_p_note')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Address</label>
-                                    <textarea  class="form-control" name="in_p_address" id="" cols="30" rows="3" required></textarea>
+                                    <textarea class="form-control" name="in_p_address" id="" cols="30" rows="3"
+                                        required></textarea>
                                     @error('in_p_address')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Admission Date</label>
-                                    <input class="form-control" id="in_p_admission_date" placeholder="Admission Date" name="in_p_admission_date"/>                                   
-                                     @error('in_p_bp')
+                                    <input type="date" class="form-control" id="in_p_admission_date"
+                                        name="in_p_admission_date" />
+                                    @error('in_p_admission_date')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Admission Case</label>
-                                    <input type="text" class="form-control" id="in_p_case" name="in_p_case" placeholder="Patient Case"/>
-                                    @error('in_p_bp')
+                                    <input type="text" class="form-control" id="in_p_case" name="in_p_case" />
+                                    @error('in_p_case')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Casualty</label>
                                     <select class="form-control" id="in_p_casualty" name="in_p_casualty">
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                        <option value="yes">Yes</option>
                                     </select>
-                                    @error('in_p_bp')
+                                    @error('in_p_casualty')
                                         <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror 
+                                    @enderror
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Old Patient</label>
                                     <select class="form-control" id="in_p_old_patient" name="in_p_old_patient">
                                         <option value="no">No</option>
                                         <option value="yes">Yes</option>
-                                        </select>
-                                    @error('in_p_bp')
+                                    </select>
+                                    @error('in_p_old_patient')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Reference</label>
-                                    <input class="form-control" id="in_p_reference" name="in_p_reference"/>                                   
-                                     @error('in_p_bp')
+                                    <input type="text" class="form-control" id="in_p_reference" name="in_p_reference" />
+                                    @error('in_p_reference')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <label>Status</label>
+                                    <select class="form-control" id="in_p_bed_status" name="in_p_bed_status">
+                                        <option value="" selected disabled>--Select Status--</option>
+                                        <option value="active" >active</option>
+                                        <option value="inactive" >inactive</option>
+                                        <option value="pending" >pending</option>
+                                        
+                                    </select>
+                                    @error('in_p_bed_status')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
                                     <label>Doctor</label>
                                     <select class="form-control" id="in_p_doc_id" name="in_p_doc_id">
-                                            <option selected hidden>-----Choose Doctor-----</option>
-                                            @foreach($doctors as $value)
-                                            <option value="{{$value->doc_id}}">{{$value->doc_name}}</option>
-                                            @endforeach
-                                        </select>                                  
-                                     @error('in_p_bp')
+                                        <option value="" selected disabled>--Select Doctor--</option>
+                                        @foreach ($Doctors as $Doctor)
+                                            <option value="{{ $Doctor->id }}">{{ $Doctor->doc_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('in_p_doc_id')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label>Bed Category</label>
                                     <select class="form-control" id="in_p_bed_category_id" name="in_p_bed_category_id">
-                                            <option selected hidden>Category</option>
-                                            @foreach($bed_categorys as $bed_category)
-                                            <option value="{{$bed_category->bed_category_id}}">{{$bed_category->bed_category_name}}</option>
-                                            @endforeach
-                                        </select>                               
-                                     @error('in_p_bp')
+                                        <option value="" selected disabled>--Select Bed Category--</option>
+                                        @foreach ($BedCategorys as $BedCategory)
+                                            <option value="{{ $BedCategory->id }}">{{ $BedCategory->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('in_p_bed_category_id')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-12">
-                                    <label>Bed</label>                                   
+                                <div class="col-md-6">
+                                    <label>Bed No</label>
                                     <select class="form-control" id="in_p_bed_id" name="in_p_bed_id">
-                                            <option selected hidden>Bed</option>
-                                        </select>                              
-                                     @error('in_p_bp')
+                                        <option value="" selected disabled>--Select Bed--</option>
+                                        @foreach ($Beds as $Bed)
+                                            <option value="{{ $Bed->id }}">{{ $Bed->bed_no }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('in_p_bed_id')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                
                             </div>
-                                                      <div class="m-t-20 text-center">
+                            <div class="m-t-20 text-center">
                                 <button type="submit" class="btn btn-primary submit-btn">Add In Patient</button>
                             </div>
-                            </p>
+                        </form>
                     </div>
                 </div>
             </div>
