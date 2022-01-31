@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label>Doctors Name</label>
                                 <select name="doc_id" id="" class="form-control" required>
-                                    <option value="" selected disabled>--Select Blood--</option>
+                                    <option value="" selected disabled>--Select Doctor--</option>
                                     @foreach ($Doctors as $Doctor)
                                         <option value="{{ $Doctor->id }}" @if($Doctor->id == $EditLabTest->doc_id)? selected : '' @endIf>{{ $Doctor->doc_name }}</option>
                                     @endforeach

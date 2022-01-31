@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2022 at 01:59 PM
+-- Generation Time: Jan 31, 2022 at 02:03 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -48,7 +48,9 @@ CREATE TABLE `appointments` (
 
 INSERT INTO `appointments` (`id`, `app_sl`, `app_p_id`, `app_p_name`, `app_p_phone`, `app_doc_id`, `app_doc_name`, `app_date`, `app_status`, `app_message`, `created_at`, `updated_at`) VALUES
 (1, 'APP-000002', 3, 'asfdsf', 453543, 1, 'dsfdsfds', '2022-01-03', 'active', 'aaaaaaaaaaaa', '2022-01-27 05:41:38', '2022-01-27 05:44:02'),
-(2, 'APP-000003', 3, 'asfdsf', 453543, 1, 'dsfdsfds', '2022-01-17', 'active', 'sdfdsf', '2022-01-27 05:44:15', '2022-01-27 05:44:15');
+(2, 'APP-000003', 3, 'asfdsf', 453543, 1, 'dsfdsfds', '2022-01-17', 'active', 'sdfdsf', '2022-01-27 05:44:15', '2022-01-27 05:44:15'),
+(4, 'APP-000004', 3, 'asfdsf', 453543, 2, 'Simone Hickman', '2020-12-15', 'inactive', 'Voluptatem Nam sed a', '2022-01-31 04:09:19', '2022-01-31 04:09:19'),
+(5, 'APP-000005', 3, 'asfdsf', 453543, 2, 'Simone Hickman', '2003-08-12', 'inactive', 'Numquam laboriosam', '2022-01-31 04:24:40', '2022-01-31 04:24:40');
 
 -- --------------------------------------------------------
 
@@ -274,7 +276,8 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`id`, `doc_id`, `doc_name`, `doc_specialist`, `doc_education`, `doc_phone`, `doc_address`, `doc_email`, `doc_password`, `doc_gender`, `doc_blood`, `doc_status`, `doc_img`, `doc_dept_id`, `created_at`, `updated_at`) VALUES
-(1, 'DOC-1', 'dsfdsfds', 'tge', 'wetw', '453543', 'dsgsdgdsg', 'fhdhf@fdh.cvg', '$2y$10$8TYjAd46kqQ/jHPElXJkf.jCFFiQ2Vl7B4zzFFqa4cpjUhCyOSGTe', 'female', 'A-', 'inactive', 'cfcf7d62-5b9b-4b81-a012-5af0ff96e2ee.jpg', 1, '2022-01-26 06:58:03', '2022-01-26 06:58:03');
+(1, 'DOC-1', 'dsfdsfds', 'tge', 'wetw', '453543', 'dsgsdgdsg', 'fhdhf@fdh.cvg', '$2y$10$8TYjAd46kqQ/jHPElXJkf.jCFFiQ2Vl7B4zzFFqa4cpjUhCyOSGTe', 'female', 'A-', 'inactive', 'cfcf7d62-5b9b-4b81-a012-5af0ff96e2ee.jpg', 1, '2022-01-26 06:58:03', '2022-01-26 06:58:03'),
+(2, 'DOC-2', 'Simone Hickman', 'Omnis itaque unde is', 'Beatae perferendis e', '14', 'Officia voluptas dol', 'zovefazywi@mailinator.com', '$2y$10$ZPA0J6hNtUSW0nOI.busZO6OWcK3wvu5AsynHnQiF.cylILn42ixW', 'male', 'AB+', 'inactive', '72243025.jpg', 1, '2022-01-30 05:27:29', '2022-01-30 05:27:29');
 
 -- --------------------------------------------------------
 
@@ -298,7 +301,66 @@ CREATE TABLE `doctor_schedules` (
 
 INSERT INTO `doctor_schedules` (`id`, `doc_name`, `date`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
 (1, 'dsfdsfds', '2022-01-11', '17:49:00', '17:49:00', '2022-01-27 05:45:44', '2022-01-27 05:45:44'),
-(2, 'dsfdsfds', '2022-01-18', '17:48:00', '17:49:00', '2022-01-27 05:45:58', '2022-01-27 05:45:58');
+(2, 'dsfdsfds', '2022-01-18', '17:48:00', '17:49:00', '2022-01-27 05:45:58', '2022-01-27 05:45:58'),
+(3, 'dsfdsfds', '1986-05-13', '21:48:00', '01:12:00', '2022-01-31 04:02:50', '2022-01-31 04:02:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `emp_name` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_phone` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_address` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_sex` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_email` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_password` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_joining_date` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_status` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_s_basic` int(11) NOT NULL,
+  `emp_s_house` int(11) NOT NULL,
+  `emp_s_medicale` int(11) DEFAULT NULL,
+  `emp_s_convience` int(11) DEFAULT NULL,
+  `emp_s_bonous` int(11) DEFAULT NULL,
+  `emp_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `emp_role_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `emp_name`, `emp_phone`, `emp_address`, `emp_sex`, `emp_email`, `emp_password`, `emp_joining_date`, `emp_status`, `emp_s_basic`, `emp_s_house`, `emp_s_medicale`, `emp_s_convience`, `emp_s_bonous`, `emp_img`, `emp_role_id`, `created_at`, `updated_at`) VALUES
+(1, 'Lynn Harrington', '33', 'A delectus libero a', 'male', 'fynys@mailinator.com', 'Pa$$w0rd!', '1975-08-16', 'inactive', 67, 95, 43, 69, 93, '72243025.jpg', 2, '2022-01-30 04:10:18', '2022-01-30 04:10:18'),
+(2, 'aaaaaaaa', '82', 'Assumenda reiciendis', 'female', 'doki@mailinator.com', 'Pa$$w0rd!', '2006-01-09', 'active', 26, 35, 28, 50, 37, 'cfcf7d62-5b9b-4b81-a012-5af0ff96e2ee.jpg', 3, '2022-01-30 04:15:55', '2022-01-30 04:22:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_roles`
+--
+
+CREATE TABLE `employee_roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `employee_roles`
+--
+
+INSERT INTO `employee_roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(2, 'Admin', '2022-01-30 04:09:46', '2022-01-30 04:09:46'),
+(3, 'Doctor', '2022-01-30 04:09:54', '2022-01-30 04:09:54'),
+(4, 'Nurse', '2022-01-30 04:09:59', '2022-01-30 04:09:59'),
+(5, 'Staff', '2022-01-30 04:10:05', '2022-01-30 04:10:05');
 
 -- --------------------------------------------------------
 
@@ -337,6 +399,18 @@ INSERT INTO `floors` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (2, 'dfsdg', '2022-01-24 09:49:47', '2022-01-24 09:49:47'),
 (3, 'aaaaaaaaa', '2022-01-24 10:09:08', '2022-01-24 10:22:04'),
 (4, 'fgdfhfdh', '2022-01-24 10:21:43', '2022-01-24 10:21:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `in_patients`
+--
+
+CREATE TABLE `in_patients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -455,6 +529,34 @@ INSERT INTO `medicine_groups` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `medicine_invoices`
+--
+
+CREATE TABLE `medicine_invoices` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `invoice_no` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medicine_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medicine_quantity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medicine_price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medicine_discount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medicine_total` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `medicine_invoices`
+--
+
+INSERT INTO `medicine_invoices` (`id`, `invoice_no`, `medicine_name`, `medicine_quantity`, `medicine_price`, `medicine_discount`, `medicine_total`, `created_at`, `updated_at`) VALUES
+(1, 'MED-INVOICE-00001', '2', '805', '350175', '87', '45522.75', '2022-01-31 05:07:31', '2022-01-31 05:07:31'),
+(2, 'MED-INVOICE-00002', '1', '320', '107200', '35', '69680', '2022-01-31 05:07:39', '2022-01-31 05:07:39'),
+(3, 'MED-INVOICE-00003', '1', '783', '262305', '54', '120660.29999999999', '2022-01-31 05:08:08', '2022-01-31 05:08:08'),
+(4, 'MED-INVOICE-00004', '2', '774', '336690', '27', '245783.7', '2022-01-31 05:08:41', '2022-01-31 05:08:41');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -493,7 +595,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (38, '2022_01_29_112713_create_asset_categories_table', 13),
 (39, '2022_01_29_114439_create_assets_table', 14),
 (40, '2022_01_29_120558_create_lab_departments_table', 15),
-(43, '2022_01_29_121650_create_lab_tests_table', 16);
+(43, '2022_01_29_121650_create_lab_tests_table', 16),
+(44, '2022_01_29_155202_create_employee_roles_table', 17),
+(45, '2022_01_29_161027_create_employees_table', 17),
+(50, '2022_01_30_103048_create_medicine_invoices_table', 18),
+(51, '2022_01_31_122904_create_in_patients_table', 19);
 
 -- --------------------------------------------------------
 
@@ -524,7 +630,9 @@ CREATE TABLE `out_patients` (
 --
 
 INSERT INTO `out_patients` (`id`, `out_p_id`, `out_p_name`, `out_p_father_name`, `out_p_gender`, `out_p_age`, `out_p_phone`, `out_p_blood`, `out_p_height`, `out_p_weight`, `out_p_bp`, `out_p_symptoms`, `out_p_address`, `created_at`, `updated_at`) VALUES
-(3, 'OUT-PAT-01', 'asfdsf', 'fasfa', 'female', 345, '453543', 'O+', '34543', '435', '43543', 'fdhg', 'fdhfdhfd', '2022-01-27 05:33:10', '2022-01-27 05:33:10');
+(3, 'OUT-PAT-01', 'asfdsf', 'fasfa', 'female', 345, '453543', 'O+', '34543', '435', '43543', 'fdhg', 'fdhfdhfd', '2022-01-27 05:33:10', '2022-01-27 05:33:10'),
+(4, 'OUT-PAT-02', 'Barclay Browning', 'Avye Conrad', 'female', 5, '98', 'O-', '85', '76', 'Velit aut adipisci q', 'Nisi natus ex eum ea', 'Delectus necessitat', '2022-01-31 06:10:38', '2022-01-31 06:10:38'),
+(5, 'OUT-PAT-03', 'Drew Barnes', 'George Barron', 'female', 65, '91', 'B+', '88', '90', 'Saepe inventore non', 'Ea cupidatat eum dol', 'Recusandae Iure et', '2022-01-31 06:11:05', '2022-01-31 06:11:05');
 
 -- --------------------------------------------------------
 
@@ -594,7 +702,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('xvKJmEOkGrqxeClX5ylvhLEbXyqkDydVwg6xm7tW', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoieDdScnN6cTB4ZXF5azk3cW4xb0pnTkptenRleHN3OXFXbG9KR0J6aiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9sYWJ0ZXN0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643461124);
+('GvbkaTP1mBl5f0LWQeY2gm4Puo4lwNL5iyt1L5iL', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.76', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUzhNZ3ZoRU1GOXB0Mkl5Nk14YXFMN1BFSWcxUUhodEc2VU94bzhDYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9pbnBhdGllbnQvY3JlYXRlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643634131);
 
 -- --------------------------------------------------------
 
@@ -699,6 +807,19 @@ ALTER TABLE `doctor_schedules`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `employees_emp_role_id_foreign` (`emp_role_id`);
+
+--
+-- Indexes for table `employee_roles`
+--
+ALTER TABLE `employee_roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -709,6 +830,12 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `floors`
 --
 ALTER TABLE `floors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `in_patients`
+--
+ALTER TABLE `in_patients`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -741,6 +868,12 @@ ALTER TABLE `medicine_companies`
 -- Indexes for table `medicine_groups`
 --
 ALTER TABLE `medicine_groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `medicine_invoices`
+--
+ALTER TABLE `medicine_invoices`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -801,7 +934,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `assets`
@@ -855,13 +988,25 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `doctor_schedules`
 --
 ALTER TABLE `doctor_schedules`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `employee_roles`
+--
+ALTER TABLE `employee_roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -874,6 +1019,12 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `floors`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `in_patients`
+--
+ALTER TABLE `in_patients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `lab_departments`
@@ -906,16 +1057,22 @@ ALTER TABLE `medicine_groups`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `medicine_invoices`
+--
+ALTER TABLE `medicine_invoices`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `out_patients`
 --
 ALTER TABLE `out_patients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -951,6 +1108,12 @@ ALTER TABLE `appointments`
 --
 ALTER TABLE `doctors`
   ADD CONSTRAINT `doctors_doc_dept_id_foreign` FOREIGN KEY (`doc_dept_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `employees`
+--
+ALTER TABLE `employees`
+  ADD CONSTRAINT `employees_emp_role_id_foreign` FOREIGN KEY (`emp_role_id`) REFERENCES `employee_roles` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `lab_tests`

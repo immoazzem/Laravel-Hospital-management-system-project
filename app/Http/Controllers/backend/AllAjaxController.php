@@ -16,6 +16,14 @@ class AllAjaxController extends Controller
        return json_encode($MEDICINE);
 
     }
+    public function PatientASPrescription($id){
+
+        //$Med_id = $request->MED_id;
+       // return $id;
+        $MEDICINE = Medicine::where('id',$id)->get();
+       return json_encode($MEDICINE);
+
+    }
 
 
 }
