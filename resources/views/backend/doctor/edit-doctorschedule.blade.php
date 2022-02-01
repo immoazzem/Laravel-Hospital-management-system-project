@@ -49,7 +49,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Room</label>
-                                <input class="form-control" value="{{$EditDoctorSchedule->room}}" name="room" type="number">
+                                <select  class="form-control" name="room" id="" required>
+                                <option value="" selected disabled>--Chose Room--</option>
+                                @foreach ($Rooms as $Room)
+                                <option value="{{$Room->name}}" @if($Room->name == $EditDoctorSchedule->room)? selected : '' @endIf>{{$Room->name}}</option>                                        
+                                @endforeach
+                                </select>                                
                                 @error('room')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

@@ -117,7 +117,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Room</label>
-                                <input class="form-control" name="room" type="number">
+                                <select  class="form-control" name="room" id="" required>
+                                    <option value="" selected disabled>--Chose Room--</option>
+                                @foreach ($Rooms as $Room)
+                                <option value="{{$Room->name}}">{{$Room->name}}</option>                                        
+                                @endforeach
+                                </select>
                                 @error('room')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

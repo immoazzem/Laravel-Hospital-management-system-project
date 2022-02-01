@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\backend\Doctors;
 use App\Models\backend\DoctorSchedule;
+use App\Models\backend\Room;
 
 class DoctorScheduleController extends Controller
 {
@@ -17,9 +18,10 @@ class DoctorScheduleController extends Controller
     public function index()
     {
         $Doctors = Doctors::all();
+        $Rooms = Room::all();
 
         $DoctorSchedules = DoctorSchedule::all();
-        return view('backend/doctor/doctorschedule', compact('DoctorSchedules', 'Doctors'));
+        return view('backend/doctor/doctorschedule', compact('DoctorSchedules', 'Doctors', 'Rooms'));
     }
 
     /**
@@ -81,9 +83,10 @@ class DoctorScheduleController extends Controller
      */
     public function edit($id)
     {
+        $Rooms = Room::all();
         $EditDoctorSchedule = DoctorSchedule::find($id);
         $Doctors = Doctors::all();
-        return view('backend/doctor/edit-doctorschedule', compact('EditDoctorSchedule', 'Doctors'));
+        return view('backend/doctor/edit-doctorschedule', compact('EditDoctorSchedule', 'Doctors', 'Rooms'));
     }
 
     /**

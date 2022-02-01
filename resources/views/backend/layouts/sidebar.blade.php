@@ -52,6 +52,7 @@
                         <li><a href="{{Route('floor.index')}}">Floor</a></li>
                         <li><a href="{{Route('bedcategory.index')}}">Bed Category</a></li>
                         <li><a href="{{Route('bed.index')}}">Bed List</a></li>
+                        <li><a href="{{Route('room.index')}}">Room List</a></li>
                     </ul>
                 </li> 
                 <li class="menu-title">Pharmacy Management</li>           
