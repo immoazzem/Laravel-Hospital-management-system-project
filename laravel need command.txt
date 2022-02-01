@@ -51,6 +51,12 @@ php artisan cache:clear
 </td>
 ===========
 php artisan migrate:refresh  --path=/database/migrations/  2014_10_12_000000_create_users_table.php
+php artisan migrate:rollback  --path=/database/migrations/
+=========
+    $id = User::insertGetId(
+	        ['email' => 'john@example.com','name' => 'john']
+	    );
+===================
 
 
 

@@ -17,7 +17,7 @@
                     @if (session('success'))
                         <h3 class="alert alert-success">{{ session('success') }}</h3>
                     @endif
-                    <table class="table table-striped custom-table mb-0 datatable">
+                    <table id="datatable" class="table table-striped custom-table mb-0 datatable">
                         <thead>
                             <tr>
                                 <th>SL</th>

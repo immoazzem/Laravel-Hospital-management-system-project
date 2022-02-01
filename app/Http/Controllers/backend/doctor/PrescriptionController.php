@@ -4,10 +4,14 @@ namespace App\Http\Controllers\backend\doctor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\backend\InPatient;
 use App\Models\backend\OutPatient;
 use App\Models\backend\Doctors;
 use App\Models\backend\Prescription;
+use App\Models\backend\Prescription_Medicines;
 use App\Models\backend\Medicine;
+use Illuminate\Support\Facades\DB;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class PrescriptionController extends Controller
 {
@@ -47,38 +51,43 @@ class PrescriptionController extends Controller
      */
     public function store(Request $request)
     {
+        $prescription_code = IdGenerator::generate(['table' => 'prescriptions','field'=>'prescription_code','length' => 8, 'prefix' =>'PRE#']);
+
+
         $request->validate([
-          'prescription_date' => 'required',
-          'patient' => 'required',
-          'doctor' => 'required',                                          
+            'prescription_date' => 'required',
+            'prescription_doc_id' => 'required',
+            'prescription_p_id' => 'required',
+            'prescription_history' => 'required',                                         
+            'prescription_note' => 'required',                                         
+                                       
         ]);
-        // $info = array(
-            //     'message' => "Holidays Class Added successfull",
-            //     'alert-type' => 'success'
-            // );
-            ['prescription_code','prescription_p_id','prescription_doc_id', 'prescription_history','prescription_note','prescription_date'];
-        
-        $Prescriptions = new Prescription;
-        $Prescriptions->prescription_p_id = $request->prescription_p_id; 
-        $Prescriptions->prescription_doc_id = $request->prescription_doc_id; 
-        $Prescriptions->prescription_history = $request->prescription_history; 
-        $Prescriptions->prescription_note = $request->prescription_note; 
-        $Prescriptions->prescription_date = $request->prescription_date; 
 
+        $Pres_insert_id = Prescription::insertGetId(
+	        [
+                'prescription_code' => $prescription_code,
+                'prescription_date' => $request->prescription_date,
+                'prescription_p_id' => $request->prescription_p_id,
+                'prescription_doc_id' => $request->prescription_doc_id,
+                'prescription_history' => $request->prescription_history,
+                'prescription_note' => $request->prescription_note,
+            ]
+	    );
 
-        $Patient = OutPatient::find($request->app_p_id);
-        $Prescriptions->app_p_name = $Patient->out_p_name; 
-        $Prescriptions->app_p_phone = $Patient->out_p_phone; 
-        
-        $Prescriptions->app_doc_id = $request->app_doc_id; 
-        $Doctors = Doctors::find($request->app_doc_id);
-        $Prescriptions->app_doc_name = $Doctors->doc_name; 
-
-        $Prescriptions->app_date = $request->app_date; 
-        $Prescriptions->app_message = $request->app_message; 
-        $Prescriptions->app_status = $request->app_status;  
-        $Prescriptions->save();
-        return redirect('admin/appointment')->with('success', 'Prescriptions created successfully.');
+        for ($i=0; $i < ($request->row_no) ; $i++)
+        {
+          $prescription_medicine[]=[
+            'prescription_id'=>$Pres_insert_id,
+            'prescription_medicine_id'=> $request->medicine[$i],
+            'prescription_med_dosage'=> $request->dosage[$i],
+            'prescription_med_frequency'=> $request->frequency[$i],
+            'prescription_med_days'=> $request->days[$i],
+            'prescription_med_ins'=> $request->instruction[$i],
+          ];
+        }
+        Prescription_Medicines::insert($prescription_medicine);
+     
+        return redirect('admin/prescription')->with('success', 'Prescriptions created successfully.');
     }
 
     /**

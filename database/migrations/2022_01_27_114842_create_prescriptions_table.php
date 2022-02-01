@@ -14,7 +14,7 @@ class CreatePrescriptionsTable extends Migration
     public function up()
     {
         Schema::create('prescriptions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('prescription_code', 45);
             $table->unsignedBigInteger('prescription_p_id');
             $table->unsignedBigInteger('prescription_doc_id');
@@ -22,8 +22,11 @@ class CreatePrescriptionsTable extends Migration
             $table->string('prescription_note', 220);
             $table->string('prescription_date',45);
             $table->timestamps();
-            $table->foreign('prescription_p_id')->references('id')->on('out_patients') ->onDelete('cascade');
-            $table->foreign('prescription_doc_id')->references('id')->on('doctors')->onDelete('cascade');
+           // $table->foreign('prescription_p_id');
+            //->references('in_p_s', 'out_p_id')->on('in_patients', 'out_patients')->onDelete('cascade');
+
+            $table->foreign('prescription_doc_id')->references('id')->on('doctors');
+            //->onDelete('cascade');
         });
     }
 

@@ -13,7 +13,7 @@
                     Show Prescription</a>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="Prescription_page">
             <div class="col-md-12">
                 <div class="card text-left">
                     <img class="card-img-top" src="holder.js/100px180/" alt="">
@@ -31,30 +31,6 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-3">
-                                    <label>Patient</label>
-                                    <select class="form-control" name="prescription_p" id="prescription_p" required>
-                                        <option value="" selected disabled>--Chose Patient--</option>
-                                        <option value="inpatient">In Patient</option>
-                                        <option value="outpatient">Out Patient</option>
-                                    </select>
-                                    @error('prescription_date')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div id="" class="col-md-3" >
-                                    <label>In Patient Name</label>
-                                    <select class="form-control" name="prescription_p_id" id="prescription_p_id" required>
-                                        <option value="" selected disabled>--Chose Patient--</option>
-                                        @foreach ($OutPatients as $OutPatient)
-                                            <option value="{{ $OutPatient->id }}">{{ $OutPatient->out_p_name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('prescription_p_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-
-                                </div>
                                 <div class="col-md-3 ">
                                     <label>Doctor Name</label>
                                     <select class="form-control" name="prescription_doc_id" id="prescription_doc_id"
@@ -68,6 +44,44 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="col-md-3">
+                                    <label>Patient</label>
+                                    <select class="form-control" name="" id="Patient_select_id">
+                                        <option value="" selected disabled>--Chose Patient--</option>
+                                        <option value="inpatient">In Patient</option>
+                                        <option value="outpatient">Out Patient</option>
+                                    </select>                                
+                                </div>
+                                <div id="pres_out_patient_id_div" class="col-md-3 d-none">
+                                    <label>Out Patient Name</label>
+                                    <select class="form-control" name="prescription_p_id" id="pres_out_patient_id"
+                                        required>
+                                        <option value="" selected disabled>--Chose Patient--</option>
+                                        @foreach ($OutPatients as $OutPatient)
+                                            <option value="{{ $OutPatient->id }}">{{ $OutPatient->out_p_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('prescription_p_id')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+
+                                </div>
+                                <div id="pres_in_patient_id_div" class="col-md-3 d-none" >
+                                    <label>In Patient Name</label>
+                                    <select class="form-control" name="prescription_p_id" id="pres_in_patient_id"
+                                        required>
+                                        <option value="" selected disabled>--Chose Patient--</option>
+                                        @foreach ($OutPatients as $OutPatient)
+                                            <option value="{{ $OutPatient->id }}">{{ $OutPatient->out_p_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('prescription_p_id')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+
+                                </div>
+
                             </div>
 
                             <div class="row">
@@ -140,45 +154,73 @@
                 </div>
             </div>
         </div>
-</div>
-<script type="text/javascript">
-  $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-  });
-  $(document).ready(function() {
-      $('.medicine_quantityy').on('keypress change keydown', function() {
-          var Medicine_id = $('#MedicineName').val();
-          $.ajax({
-              url: "{{ url('/admin/prescription-patient') }}" + '/' + Medicine_id,
-              type: "GET",
-              dataType: "json",
-              success: function(data) {
-                  $.each(data, function(key, value) {
-                      //alert(value.id)
-                      $('#medicine_price').empty();
-                      $('#MedunitPrice').text('Unit Price = ' + value.price);
-                      var UnitPrice = value.price;
-                      var medicine_quantity = $('#medicine_quantityy').val();
-                      var Total = UnitPrice * medicine_quantity;
-                      $('#medicine_price').val(Total);
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-                      var DiscountVal =  $('.medicine_discountt').val();
-                      var f =  parseInt(DiscountVal);
-                       
-                      var discount = Total *  f/100 ;
-                      
-                      $('.medicine_totall').val(Total - discount);
-                  });
-              }
-          })
+               
+                    $('#Patient_select_id').on('change', function(e) {
+                       var Medicine_id = e.target.value;                      
+                        //alert(Medicine_id);
 
-         // alert('sdsd')
-      });
-  });
-</script>
-<script type="text/javascript">
+                        
+                       // var Patient_select_ID = $('#Patient_select_id').val();
+
+                        if(Medicine_id == 'inpatient'){
+                           $('#pres_in_patient_id_div').removeClass('d-none');
+                           $('#pres_out_patient_id_div').addClass('d-none');
+                        } 
+                        else if (Medicine_id == 'outpatient'){
+                            
+                            
+                            $('#pres_in_patient_id_div').addClass('d-none');
+                           $('#pres_out_patient_id_div').removeClass('d-none');
+                       }
+                        
+                });
+           
+        });
+    </script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function() {
+          
+            $('.medicine_quantityy').on('keypress change keydown', function() {
+                var Medicine_id = $('#MedicineName').val();
+                $.ajax({
+                    url: "{{ url('/admin/prescription-patient') }}" + '/' + Medicine_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $.each(data, function(key, value) {
+                            //alert(value.id)
+                            $('#medicine_price').empty();
+                            $('#MedunitPrice').text('Unit Price = ' + value.price);
+                            var UnitPrice = value.price;
+                            var medicine_quantity = $('#medicine_quantityy').val();
+                            var Total = UnitPrice * medicine_quantity;
+                            $('#medicine_price').val(Total);
+
+                            var DiscountVal = $('.medicine_discountt').val();
+                            var f = parseInt(DiscountVal);
+
+                            var discount = Total * f / 100;
+
+                            $('.medicine_totall').val(Total - discount);
+                        });
+                    }
+                })
+
+                // alert('sdsd')
+            });
+        });
+    </script>
+    <script type="text/javascript">
         $(document).ready(function() {
             $('.textarea').wysihtml5();
         });
@@ -196,33 +238,33 @@
                     i++;
                     $("#row_no").val(i);
                     $(wrapper).append("<div>\
-                      <table>\
-                                      <tr>\
-                                          <td>\
-                                            <select class='form-control' name='medicine[]' style='width: 170px;'>\
-                                              <option selected hidden disabled>Select</option>\
-                                              @foreach ($Medicines as $Medicine)\
-                                                  <option value='{{ $Medicine->id }}'>{{ $Medicine->name }}</option>\
-                                              @endforeach\
-                                            </select>\
-                                          </td>\
-                                          <td>\
-                                            <input type='text' name='dosage[]' class='form-control' style='margin-left: 9px; width:170px;' placeholder='100mg'>\
-                                          </td>\
-                                          <td>\
-                                            <input type='text' name='frequency[]' class='form-control' style='margin-left: 9px; width:170px;' placeholder='1+0+1'>\
-                                          </td>\
-                                          <td>\
-                                            <input type='text' name='days[]' class='form-control' style='margin-left: 9px; width: 170px;' placeholder='7days'>\
-                                          </td>\
-                                          <td>\
-                                            <input type='text' name='instruction[]' class='form-control' style='margin-left: 9px; width: 170px;' placeholder='After Food'>\
-                                          </td>\
-                                          <td>\
-                                            <button class='btn btn-danger btn-sm remove_field' style='margin-left: 8px;'><i class='fa fa-trash'></i></button>\
-                                          </td>\
-                                      </tr>\
-                                    </table>\</div>");
+                          <table>\
+                                          <tr>\
+                                              <td>\
+                                                <select class='form-control' name='medicine[]' style='width: 170px;'>\
+                                                  <option selected hidden disabled>Select</option>\
+                                                  @foreach ($Medicines as $Medicine)\
+                                                      <option value='{{ $Medicine->id }}'>{{ $Medicine->name }}</option>\
+                                                  @endforeach\
+                                                </select>\
+                                              </td>\
+                                              <td>\
+                                                <input type='text' name='dosage[]' class='form-control' style='margin-left: 9px; width:170px;' placeholder='100mg'>\
+                                              </td>\
+                                              <td>\
+                                                <input type='text' name='frequency[]' class='form-control' style='margin-left: 9px; width:170px;' placeholder='1+0+1'>\
+                                              </td>\
+                                              <td>\
+                                                <input type='text' name='days[]' class='form-control' style='margin-left: 9px; width: 170px;' placeholder='7days'>\
+                                              </td>\
+                                              <td>\
+                                                <input type='text' name='instruction[]' class='form-control' style='margin-left: 9px; width: 170px;' placeholder='After Food'>\
+                                              </td>\
+                                              <td>\
+                                                <button class='btn btn-danger btn-sm remove_field' style='margin-left: 8px;'><i class='fa fa-trash'></i></button>\
+                                              </td>\
+                                          </tr>\
+                                        </table>\</div>");
                 }
             });
             $(wrapper).on("click", ".remove_field", function(e) {

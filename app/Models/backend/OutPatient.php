@@ -17,7 +17,7 @@ class OutPatient extends Model
 	{
 	    parent::boot();
 	    static::saving(function ($model) {
-	        $model->out_p_id = IdGenerator::generate(['table' => 'out_patients', 'field'=>'out_p_id', 'length' => 10, 'prefix' => 'OUT-PAT-']);
+	        $model->out_p_id = IdGenerator::generate(['table' => 'out_patients', 'field'=>'out_p_id', 'length' => 15, 'prefix' => 'OUT-PAT-']);
 	    });
 	}
 
