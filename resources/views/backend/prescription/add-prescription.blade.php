@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Prescription Add Form</h4>
                         <p class="card-text">
-                        <form action="{{ route('prescription.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('prescription.store') }}" method="post">
                             @csrf
                             {{-- ['prescription_code','','', '','','']; --}}
                             <div class="form-group row">
@@ -149,7 +149,7 @@
                             <div class="m-t-20 text-center">
                                 <button type="submit" class="btn btn-primary submit-btn">Add Prescription</button>
                             </div>
-                            </p>
+                        </form>
                     </div>
                 </div>
             </div>

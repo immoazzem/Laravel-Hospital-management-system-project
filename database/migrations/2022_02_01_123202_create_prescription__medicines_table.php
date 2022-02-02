@@ -14,7 +14,7 @@ class CreatePrescriptionMedicinesTable extends Migration
     public function up()
     {
         Schema::create('prescription__medicines', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id('id');
             $table->unsignedBigInteger('prescription_id');
             $table->unsignedBigInteger('prescription_medicine_id');
             $table->string('prescription_med_dosage', 45);

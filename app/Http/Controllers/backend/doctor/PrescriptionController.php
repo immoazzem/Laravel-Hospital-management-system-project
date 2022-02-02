@@ -52,8 +52,7 @@ class PrescriptionController extends Controller
     public function store(Request $request)
     {
         $prescription_code = IdGenerator::generate(['table' => 'prescriptions','field'=>'prescription_code','length' => 8, 'prefix' =>'PRE#']);
-
-
+        
         $request->validate([
             'prescription_date' => 'required',
             'prescription_doc_id' => 'required',
