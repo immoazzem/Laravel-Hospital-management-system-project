@@ -14,7 +14,7 @@ class CreatePrescriptionMedicinesTable extends Migration
     public function up()
     {
         Schema::create('prescription__medicines', function (Blueprint $table) {
-            $table->id('id');
+            $table->increments('id');
             $table->unsignedBigInteger('prescription_id');
             $table->unsignedBigInteger('prescription_medicine_id');
             $table->string('prescription_med_dosage', 45);
@@ -22,6 +22,7 @@ class CreatePrescriptionMedicinesTable extends Migration
             $table->string('prescription_med_days', 45);
             $table->string('prescription_med_ins', 45);
             $table->timestamps();
+            
             $table->foreign('prescription_id')->references('id')->on('prescriptions')->onDelete('cascade');
             $table->foreign('prescription_medicine_id')->references('id')->on('medicines')->onDelete('cascade');
         });

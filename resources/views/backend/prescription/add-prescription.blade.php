@@ -22,7 +22,7 @@
                         <p class="card-text">
                         <form action="{{ route('prescription.store') }}" method="post">
                             @csrf
-                            {{-- ['prescription_code','','', '','','']; --}}
+
                             <div class="form-group row">
                                 <div class="col-md-3">
                                     <label>Date</label>
@@ -31,7 +31,7 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-3 ">
+                                <div class="col-md-3">
                                     <label>Doctor Name</label>
                                     <select class="form-control" name="prescription_doc_id" id="prescription_doc_id"
                                         required>
@@ -45,17 +45,16 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-3">
-                                    <label>Patient</label>
+                                    <label>Patient Type</label>
                                     <select class="form-control" name="" id="Patient_select_id">
                                         <option value="" selected disabled>--Chose Patient--</option>
                                         <option value="inpatient">In Patient</option>
                                         <option value="outpatient">Out Patient</option>
-                                    </select>                                
+                                    </select>
                                 </div>
-                                <div id="pres_out_patient_id_div" class="col-md-3 d-none">
-                                    <label>Out Patient Name</label>
-                                    <select class="form-control" name="prescription_p_id" id="pres_out_patient_id"
-                                        required>
+                                <div class="col-md-3">
+                                    <label>Patient Name</label>
+                                    <select class="form-control" name="prescription_p_id" id="prescription_p_id" required>
                                         <option value="" selected disabled>--Chose Patient--</option>
                                         @foreach ($OutPatients as $OutPatient)
                                             <option value="{{ $OutPatient->id }}">{{ $OutPatient->out_p_name }}</option>
@@ -64,26 +63,8 @@
                                     @error('prescription_p_id')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-
                                 </div>
-                                <div id="pres_in_patient_id_div" class="col-md-3 d-none" >
-                                    <label>In Patient Name</label>
-                                    <select class="form-control" name="prescription_p_id" id="pres_in_patient_id"
-                                        required>
-                                        <option value="" selected disabled>--Chose Patient--</option>
-                                        @foreach ($OutPatients as $OutPatient)
-                                            <option value="{{ $OutPatient->id }}">{{ $OutPatient->out_p_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('prescription_p_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-
-                                </div>
-
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>
@@ -147,6 +128,7 @@
                             </div>
 
                             <div class="m-t-20 text-center">
+
                                 <button type="submit" class="btn btn-primary submit-btn">Add Prescription</button>
                             </div>
                         </form>
@@ -156,29 +138,52 @@
         </div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function() {
 
-               
-                    $('#Patient_select_id').on('change', function(e) {
-                       var Medicine_id = e.target.value;                      
-                        //alert(Medicine_id);
 
-                        
-                       // var Patient_select_ID = $('#Patient_select_id').val();
+            $('#Patient_select_id').on('change', function(e) {
+                var patient_type = e.target.value;
+                //alert(Medicine_id);
+                if (patient_type) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ url('/admin/prescription-patient') }}/" + patient_type,
+                        dataType: "json",
+                        success: function(data) {
+                             $('select[name="prescription_p_id"]').empty();
+                            $.each(data, function(key, value) {
+    
+                                if(value.out_p_name){
+                                    
+                                        $('select[name="prescription_p_id"]').append(
+                                            ' <option value="' + value.out_p_id + '">' + value.out_p_name + '</option>'
+                                        )
+                
+                                } else if(value.in_p_name){
+                                    
+                                
+                                        $('select[name="prescription_p_id"]').append(
+                                            ' <option value="' + value.id + '">' + value.in_p_name + '</option>'
+                                        )
 
-                        if(Medicine_id == 'inpatient'){
-                           $('#pres_in_patient_id_div').removeClass('d-none');
-                           $('#pres_out_patient_id_div').addClass('d-none');
-                        } 
-                        else if (Medicine_id == 'outpatient'){
-                            
-                            
-                            $('#pres_in_patient_id_div').addClass('d-none');
-                           $('#pres_out_patient_id_div').removeClass('d-none');
-                       }
-                        
-                });
-           
+                                }
+
+                            });
+                         }
+                    });
+                } else {
+                    alert('Patient Type Not Found');
+                }
+
+
+
+            });
+
         });
     </script>
 
@@ -189,7 +194,7 @@
             }
         });
         $(document).ready(function() {
-          
+
             $('.medicine_quantityy').on('keypress change keydown', function() {
                 var Medicine_id = $('#MedicineName').val();
                 $.ajax({
@@ -238,33 +243,33 @@
                     i++;
                     $("#row_no").val(i);
                     $(wrapper).append("<div>\
-                          <table>\
-                                          <tr>\
-                                              <td>\
-                                                <select class='form-control' name='medicine[]' style='width: 170px;'>\
-                                                  <option selected hidden disabled>Select</option>\
-                                                  @foreach ($Medicines as $Medicine)\
-                                                      <option value='{{ $Medicine->id }}'>{{ $Medicine->name }}</option>\
-                                                  @endforeach\
-                                                </select>\
-                                              </td>\
-                                              <td>\
-                                                <input type='text' name='dosage[]' class='form-control' style='margin-left: 9px; width:170px;' placeholder='100mg'>\
-                                              </td>\
-                                              <td>\
-                                                <input type='text' name='frequency[]' class='form-control' style='margin-left: 9px; width:170px;' placeholder='1+0+1'>\
-                                              </td>\
-                                              <td>\
-                                                <input type='text' name='days[]' class='form-control' style='margin-left: 9px; width: 170px;' placeholder='7days'>\
-                                              </td>\
-                                              <td>\
-                                                <input type='text' name='instruction[]' class='form-control' style='margin-left: 9px; width: 170px;' placeholder='After Food'>\
-                                              </td>\
-                                              <td>\
-                                                <button class='btn btn-danger btn-sm remove_field' style='margin-left: 8px;'><i class='fa fa-trash'></i></button>\
-                                              </td>\
-                                          </tr>\
-                                        </table>\</div>");
+                              <table>\
+                                              <tr>\
+                                                  <td>\
+                                                    <select class='form-control' name='medicine[]' style='width: 170px;'>\
+                                                      <option selected hidden disabled>Select</option>\
+                                                      @foreach ($Medicines as $Medicine)\
+                                                          <option value='{{ $Medicine->id }}'>{{ $Medicine->name }}</option>\
+                                                      @endforeach\
+                                                    </select>\
+                                                  </td>\
+                                                  <td>\
+                                                    <input type='text' name='dosage[]' class='form-control' style='margin-left: 9px; width:170px;' placeholder='100mg'>\
+                                                  </td>\
+                                                  <td>\
+                                                    <input type='text' name='frequency[]' class='form-control' style='margin-left: 9px; width:170px;' placeholder='1+0+1'>\
+                                                  </td>\
+                                                  <td>\
+                                                    <input type='text' name='days[]' class='form-control' style='margin-left: 9px; width: 170px;' placeholder='7days'>\
+                                                  </td>\
+                                                  <td>\
+                                                    <input type='text' name='instruction[]' class='form-control' style='margin-left: 9px; width: 170px;' placeholder='After Food'>\
+                                                  </td>\
+                                                  <td>\
+                                                    <button class='btn btn-danger btn-sm remove_field' style='margin-left: 8px;'><i class='fa fa-trash'></i></button>\
+                                                  </td>\
+                                              </tr>\
+                                            </table>\</div>");
                 }
             });
             $(wrapper).on("click", ".remove_field", function(e) {
