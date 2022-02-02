@@ -36,32 +36,42 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $Prescription->prescription_code }}</td>
                                     <td>{{ $Prescription->prescription_date }}</td>
+                                    <td>{{ $Prescription->prescription_p_id }}</td>
                                     <td>
                                         @php
-                                    
-                                        $Department= collect($Departments)->where('id', $Doctor->doc_dept_id )->first()
-                                        @endphp 
-                                        {{ $Prescription->prescription_p_id }}
+                                            $Doctor = collect($Doctors)
+                                                ->where('id', $Prescription->prescription_doc_id)
+                                                ->first();
+                                        @endphp
+                                        {{ $Doctor->doc_name }}
                                     </td>
                                     <td>
                                         @php
-                                    
-                                        $Department= collect($Departments)->where('id', $Doctor->doc_dept_id )->first()
-                                        @endphp 
-                                        {{ $Prescription->prescription_doc_id }}
-                                    </td>
-                                    <td>
-                                        @php
-                                    
-                                        $Department= collect($Departments)->where('id', $Doctor->doc_dept_id )->first()
-                                        @endphp 
-                                        {{ $Prescription->med }}
+                                            
+                                            $Prescription_Medicine = collect($Prescription_Medicines)->where('prescription_id ', $Prescription->id);  
+                                             $MEDICINEname = array_get($Prescription_Medicine, );  
+                                            // foreach ($Prescription_Medicine as $value) {
+                                            //     $MEDICINEname[] = $value->prescription_medicine_id
+                                            // }
+                                            // echo implode(" ",$MEDICINEname);
+                                        @endphp
+
+                                            {{-- @foreach ( as $value)
+                                             {{ $value->prescription_medicine_id }} --}}
+                                                {{-- @php                                                   
+                                                    $MEDICINEname = array ($value->prescription_medicine_id);
+                                                @endphp --}}
+{{-- 
+                                        @endforeach --}}
+                                            {{-- @php
+                                                print_r($MEDICINEname);
+                                            @endphp --}}
+                                        {{-- {{ $MEDICINEname }} --}}
                                     </td>
                                     <td>{{ $Prescription->prescription_note }}</td>
-{{--                            
-                                    <td>
-                                        <span class="custom-badge @if ( $Doctor->doc_status  == 'active') ? status-green @else status-red @endif">{{  $Doctor->doc_status }}</span>
-                                    </td>                                         --}}
+                                    {{-- <td>
+                                        <span class="custom-badge @if ($Doctor->doc_status == 'active') ? status-green @else status-red @endif">{{  $Doctor->doc_status }}</span>
+                                    </td> --}}
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle " data-toggle="dropdown"
