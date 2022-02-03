@@ -12,6 +12,10 @@ class Medicine extends Model
 
    
 
+    public function medicine()
+    {
+        return $this->belongsTo(Prescription_Medicines::class);
+    }
 
     
 }

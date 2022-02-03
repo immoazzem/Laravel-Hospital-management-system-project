@@ -53,8 +53,10 @@
                                         {{ $Doctor->doc_name }}
                                     </td>
                                     <td>
+                                    
+                                   
 
-                                      {{ $Prescription->id}}
+                                      {{-- {{ $Prescription->id}} --}}
 
                                     </td>
                                     <td>{{ $Prescription->prescription_note }}</td>
@@ -87,19 +89,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Sl</th>
-                                <th>Code</th>
-                                <th>Date</th>
-                                <th>Patient Name</th>
-                                <th>Doctore Name</th>
-                                <th>Medicines</th>
-                                <th>Note</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
+                        </tbody>                       
                     </table>
                 </div>
             </div>

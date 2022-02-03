@@ -17,27 +17,16 @@ class Prescription_Medicines extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function Medicines()
+    public function pres_Medicines()
     {
-        return $this->belongsTo(Medicine::class, 'prescription_medicine_id', 'id');
+        return $this->hasMany(Medicine::class, 'prescription_medicine_id', 'id');
     }
 
 
-
-    /**
-     * Get the user that owns the Medicine
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function Prescription()
     {
-        return $this->belongsTo(Prescription::class, 'prescription_id', 'id');
+        return $this->hasMany(Prescription::class, 'prescription_id', 'id');
     }
-
-
-
-
-
 
 
 }

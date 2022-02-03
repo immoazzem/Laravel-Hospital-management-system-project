@@ -12,6 +12,10 @@ class Prescription extends Model
   protected $fillable = ['prescription_code','prescription_p_id','prescription_doc_id', 'prescription_history','prescription_note','prescription_date'];
 
 
-
+  public function press_medicine()
+  {
+      return $this->belongsToMany(Prescription_Medicines::class);
+      
+  }
 
 }
