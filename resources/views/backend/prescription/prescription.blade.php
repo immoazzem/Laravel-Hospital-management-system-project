@@ -1,6 +1,13 @@
 @extends('backend/layouts/master')
 @section('doctor')
 
+
+@php
+//$Prescription_Medicine = App\Models\backend\Prescription_Medicines::all();
+// dd($Prescription_Medicine);
+
+@endphp
+
     <div class="content">
         <div class="row">
             <div class="col-sm-5 col-5">
@@ -46,27 +53,9 @@
                                         {{ $Doctor->doc_name }}
                                     </td>
                                     <td>
-                                        @php
-                                            
-                                            $Prescription_Medicine = collect($Prescription_Medicines)->where('prescription_id ', $Prescription->id);  
-                                             $MEDICINEname = array_get($Prescription_Medicine, );  
-                                            // foreach ($Prescription_Medicine as $value) {
-                                            //     $MEDICINEname[] = $value->prescription_medicine_id
-                                            // }
-                                            // echo implode(" ",$MEDICINEname);
-                                        @endphp
 
-                                            {{-- @foreach ( as $value)
-                                             {{ $value->prescription_medicine_id }} --}}
-                                                {{-- @php                                                   
-                                                    $MEDICINEname = array ($value->prescription_medicine_id);
-                                                @endphp --}}
-{{-- 
-                                        @endforeach --}}
-                                            {{-- @php
-                                                print_r($MEDICINEname);
-                                            @endphp --}}
-                                        {{-- {{ $MEDICINEname }} --}}
+                                      {{ $Prescription->id}}
+
                                     </td>
                                     <td>{{ $Prescription->prescription_note }}</td>
                                     {{-- <td>

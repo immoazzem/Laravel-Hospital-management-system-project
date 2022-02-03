@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2022 at 02:03 PM
+-- Generation Time: Feb 03, 2022 at 12:38 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -291,6 +291,7 @@ CREATE TABLE `doctor_schedules` (
   `date` date NOT NULL,
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
+  `room` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -299,10 +300,11 @@ CREATE TABLE `doctor_schedules` (
 -- Dumping data for table `doctor_schedules`
 --
 
-INSERT INTO `doctor_schedules` (`id`, `doc_name`, `date`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
-(1, 'dsfdsfds', '2022-01-11', '17:49:00', '17:49:00', '2022-01-27 05:45:44', '2022-01-27 05:45:44'),
-(2, 'dsfdsfds', '2022-01-18', '17:48:00', '17:49:00', '2022-01-27 05:45:58', '2022-01-27 05:45:58'),
-(3, 'dsfdsfds', '1986-05-13', '21:48:00', '01:12:00', '2022-01-31 04:02:50', '2022-01-31 04:02:50');
+INSERT INTO `doctor_schedules` (`id`, `doc_name`, `date`, `start_time`, `end_time`, `room`, `created_at`, `updated_at`) VALUES
+(1, 'Simone Hickman', '2002-09-19', '09:18:00', '15:48:00', '102', '2022-02-01 03:42:11', '2022-02-01 03:42:11'),
+(2, 'dsfdsfds', '1993-05-11', '00:20:00', '18:30:00', '102', '2022-02-01 03:42:30', '2022-02-01 03:42:30'),
+(3, 'dsfdsfds', '1992-10-26', '10:20:00', '03:03:00', '102', '2022-02-01 03:42:42', '2022-02-01 03:42:42'),
+(4, 'Simone Hickman', '1977-12-16', '23:07:00', '11:55:00', '104', '2022-02-01 03:42:54', '2022-02-01 03:42:54');
 
 -- --------------------------------------------------------
 
@@ -408,9 +410,39 @@ INSERT INTO `floors` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `in_patients` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `in_p_s` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_name` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_sex` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_age` int(11) NOT NULL,
+  `in_p_phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_guardian_name` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_guardian_phone` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_blood` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_height` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `in_p_weight` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `in_p_bp` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `in_p_symptoms` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `in_p_address` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_admission_date` date NOT NULL,
+  `in_p_case` varchar(110) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_bed_status` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `in_p_casualty` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `in_p_old_patient` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `in_p_reference` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `in_p_doc_id` bigint(20) UNSIGNED NOT NULL,
+  `in_p_bed_category_id` bigint(20) UNSIGNED NOT NULL,
+  `in_p_bed_id` bigint(20) UNSIGNED NOT NULL,
+  `in_p_note` varchar(220) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `in_patients`
+--
+
+INSERT INTO `in_patients` (`id`, `in_p_s`, `in_p_name`, `in_p_sex`, `in_p_age`, `in_p_phone`, `in_p_guardian_name`, `in_p_guardian_phone`, `in_p_blood`, `in_p_height`, `in_p_weight`, `in_p_bp`, `in_p_symptoms`, `in_p_address`, `in_p_admission_date`, `in_p_case`, `in_p_bed_status`, `in_p_casualty`, `in_p_old_patient`, `in_p_reference`, `in_p_doc_id`, `in_p_bed_category_id`, `in_p_bed_id`, `in_p_note`, `created_at`, `updated_at`) VALUES
+(1, 'IN-PAT-00000001', 'Erica Sellers', 'female', 47, '+1 (685) 901-4585', 'Dexter Cantrell', '+1 (426) 304-2481', 'A-', '18', '80', '23', 'Lorem exercitation q', 'Qui voluptatem dolor', '2001-07-04', 'Velit modi autem max', 'pending', 'no', 'yes', 'Eius perferendis mol', 1, 3, 1, 'Deserunt dignissimos', '2022-02-02 05:12:56', '2022-02-02 05:12:56');
 
 -- --------------------------------------------------------
 
@@ -552,7 +584,8 @@ INSERT INTO `medicine_invoices` (`id`, `invoice_no`, `medicine_name`, `medicine_
 (1, 'MED-INVOICE-00001', '2', '805', '350175', '87', '45522.75', '2022-01-31 05:07:31', '2022-01-31 05:07:31'),
 (2, 'MED-INVOICE-00002', '1', '320', '107200', '35', '69680', '2022-01-31 05:07:39', '2022-01-31 05:07:39'),
 (3, 'MED-INVOICE-00003', '1', '783', '262305', '54', '120660.29999999999', '2022-01-31 05:08:08', '2022-01-31 05:08:08'),
-(4, 'MED-INVOICE-00004', '2', '774', '336690', '27', '245783.7', '2022-01-31 05:08:41', '2022-01-31 05:08:41');
+(4, 'MED-INVOICE-00004', '2', '774', '336690', '27', '245783.7', '2022-01-31 05:08:41', '2022-01-31 05:08:41'),
+(5, 'MED-INVOICE-00005', '2', '11', '4785', '05', '4545.75', '2022-02-01 04:09:53', '2022-02-01 04:09:53');
 
 -- --------------------------------------------------------
 
@@ -586,9 +619,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2022_01_25_100708_create_medicines_table', 5),
 (17, '2022_01_25_112754_create_out_patients_table', 6),
 (22, '2022_01_25_161323_create_doctors_table', 7),
-(25, '2022_01_26_123109_create_doctor_schedules_table', 8),
 (29, '2022_01_27_093520_create_appointments_table', 9),
-(30, '2022_01_27_114842_create_prescriptions_table', 10),
 (35, '2022_01_29_094722_create_blood_donors_table', 11),
 (36, '2022_01_29_103036_create_blood_groups_table', 11),
 (37, '2022_01_29_110317_create_blood_banks_table', 12),
@@ -599,7 +630,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (44, '2022_01_29_155202_create_employee_roles_table', 17),
 (45, '2022_01_29_161027_create_employees_table', 17),
 (50, '2022_01_30_103048_create_medicine_invoices_table', 18),
-(51, '2022_01_31_122904_create_in_patients_table', 19);
+(52, '2022_02_01_024909_create_rooms_table', 20),
+(53, '2022_01_26_123109_create_doctor_schedules_table', 21),
+(55, '2022_01_31_122904_create_in_patients_table', 22),
+(59, '2022_01_27_114842_create_prescriptions_table', 23),
+(60, '2022_02_01_123202_create_prescription__medicines_table', 23);
 
 -- --------------------------------------------------------
 
@@ -671,9 +706,9 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `prescriptions` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `prescription_code` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prescription_p_id` bigint(20) UNSIGNED NOT NULL,
+  `prescription_p_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prescription_doc_id` bigint(20) UNSIGNED NOT NULL,
   `prescription_history` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prescription_note` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -681,6 +716,77 @@ CREATE TABLE `prescriptions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `prescriptions`
+--
+
+INSERT INTO `prescriptions` (`id`, `prescription_code`, `prescription_p_id`, `prescription_doc_id`, `prescription_history`, `prescription_note`, `prescription_date`, `created_at`, `updated_at`) VALUES
+(1, 'PRE#0001', 'OUT-PAT-01', 2, 'Numquam sint ipsam i', 'Ab occaecat quo cumq', '1970-07-18', NULL, NULL),
+(2, 'PRE#0002', 'OUT-PAT-01', 1, 'Soluta dolor quo nih', 'Qui culpa quod dolo', '1992-08-02', NULL, NULL),
+(3, 'PRE#0003', 'OUT-PAT-01', 1, 'Soluta dolor quo nih', 'Qui culpa quod dolo', '1992-08-02', NULL, NULL),
+(4, 'PRE#0004', '1', 1, 'Beatae dolore nihil', 'Deserunt temporibus', '1992-02-12', NULL, NULL),
+(5, 'PRE#0005', '1', 1, 'Aliquid et quaerat n', 'Saepe saepe totam et', '1990-05-27', NULL, NULL),
+(6, 'PRE#0006', 'OUT-PAT-01', 1, 'Sit facere saepe omn', 'Officia laudantium', '1984-01-13', NULL, NULL),
+(7, 'PRE#0007', '1', 2, 'Id officiis non fugi', 'Quaerat in laboriosa', '2008-03-16', NULL, NULL),
+(8, 'PRE#0008', '1', 2, 'Animi aut non aut q', 'Dolorum vero dolores', '1994-09-11', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prescription__medicines`
+--
+
+CREATE TABLE `prescription__medicines` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `prescription_id` bigint(20) UNSIGNED NOT NULL,
+  `prescription_medicine_id` bigint(20) UNSIGNED NOT NULL,
+  `prescription_med_dosage` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prescription_med_frequency` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prescription_med_days` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prescription_med_ins` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `prescription__medicines`
+--
+
+INSERT INTO `prescription__medicines` (`id`, `prescription_id`, `prescription_medicine_id`, `prescription_med_dosage`, `prescription_med_frequency`, `prescription_med_days`, `prescription_med_ins`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '100', '1+1+1', '25', 'after', NULL, NULL),
+(2, 1, 2, '500', '1+0+1', '5', 'before', NULL, NULL),
+(3, 4, 1, 'Excepturi et dolorum', 'Provident reiciendi', '17', 'Deserunt totam conse', NULL, NULL),
+(4, 4, 2, 'Aperiam mollitia mag', 'Sit qui culpa omnis', '7', 'Vitae autem est dolo', NULL, NULL),
+(5, 4, 1, 'Autem dolore quasi b', 'Ipsum qui eum quo i', '26', 'Sint recusandae Ut', NULL, NULL),
+(6, 4, 2, 'Sit voluptatum quia', 'Molestiae molestiae', '26', 'Magnam omnis ut at q', NULL, NULL),
+(7, 4, 1, 'Est fugiat rerum vo', 'Ut totam error quod', '9', 'Et quos tempor qui d', NULL, NULL),
+(8, 5, 1, 'Eos et voluptas nesc', 'Magna ea enim volupt', '28', 'Dolores dolorum et r', NULL, NULL),
+(9, 7, 1, 'Quidem laboriosam i', 'Nam id ut eius nostr', '28', 'Omnis molestiae veri', NULL, NULL),
+(10, 8, 1, 'Sed minima sequi qui', 'Ipsam nihil totam no', '4', 'Duis tempora repelle', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, '101', '2022-02-01 03:35:44', '2022-02-01 03:35:44'),
+(2, '102', '2022-02-01 03:35:49', '2022-02-01 03:35:49'),
+(3, '103', '2022-02-01 03:35:54', '2022-02-01 03:35:54'),
+(4, '104', '2022-02-01 03:35:58', '2022-02-01 03:35:58');
 
 -- --------------------------------------------------------
 
@@ -702,7 +808,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('GvbkaTP1mBl5f0LWQeY2gm4Puo4lwNL5iyt1L5iL', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.76', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUzhNZ3ZoRU1GOXB0Mkl5Nk14YXFMN1BFSWcxUUhodEc2VU94bzhDYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9pbnBhdGllbnQvY3JlYXRlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQ5MklYVU5wa2pPMHJPUTVieU1pLlllNG9Lb0VhM1JvOWxsQy8ub2cvYXQyLnVoZVdHL2lnaSI7fQ==', 1643634131);
+('a3dNQJSzCk1jtFqt9WYgR99Gxyh5ksZmnP4rmIB8', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.76', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiaU1DRjJNd285T0M3Ym95MlhOVkZYQVhhSVI0czlEN2U3RXNMd0lMciI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcmVzY3JpcHRpb24iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkOTJJWFVOcGtqTzByT1E1YnlNaS5ZZTRvS29FYTNSbzlsbEMvLm9nL2F0Mi51aGVXRy9pZ2kiO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJDkySVhVTnBrak8wck9RNWJ5TWkuWWU0b0tvRWEzUm85bGxDLy5vZy9hdDIudWhlV0cvaWdpIjt9', 1643888148);
 
 -- --------------------------------------------------------
 
@@ -836,7 +942,10 @@ ALTER TABLE `floors`
 -- Indexes for table `in_patients`
 --
 ALTER TABLE `in_patients`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `in_patients_in_p_doc_id_foreign` (`in_p_doc_id`),
+  ADD KEY `in_patients_in_p_bed_category_id_foreign` (`in_p_bed_category_id`),
+  ADD KEY `in_patients_in_p_bed_id_foreign` (`in_p_bed_id`);
 
 --
 -- Indexes for table `lab_departments`
@@ -907,8 +1016,21 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `prescriptions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `prescriptions_prescription_p_id_foreign` (`prescription_p_id`),
   ADD KEY `prescriptions_prescription_doc_id_foreign` (`prescription_doc_id`);
+
+--
+-- Indexes for table `prescription__medicines`
+--
+ALTER TABLE `prescription__medicines`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `prescription__medicines_prescription_id_foreign` (`prescription_id`),
+  ADD KEY `prescription__medicines_prescription_medicine_id_foreign` (`prescription_medicine_id`);
+
+--
+-- Indexes for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sessions`
@@ -994,7 +1116,7 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT for table `doctor_schedules`
 --
 ALTER TABLE `doctor_schedules`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -1024,7 +1146,7 @@ ALTER TABLE `floors`
 -- AUTO_INCREMENT for table `in_patients`
 --
 ALTER TABLE `in_patients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lab_departments`
@@ -1060,13 +1182,13 @@ ALTER TABLE `medicine_groups`
 -- AUTO_INCREMENT for table `medicine_invoices`
 --
 ALTER TABLE `medicine_invoices`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `out_patients`
@@ -1084,7 +1206,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `prescriptions`
 --
 ALTER TABLE `prescriptions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `prescription__medicines`
+--
+ALTER TABLE `prescription__medicines`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1116,6 +1250,14 @@ ALTER TABLE `employees`
   ADD CONSTRAINT `employees_emp_role_id_foreign` FOREIGN KEY (`emp_role_id`) REFERENCES `employee_roles` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `in_patients`
+--
+ALTER TABLE `in_patients`
+  ADD CONSTRAINT `in_patients_in_p_bed_category_id_foreign` FOREIGN KEY (`in_p_bed_category_id`) REFERENCES `bed_categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `in_patients_in_p_bed_id_foreign` FOREIGN KEY (`in_p_bed_id`) REFERENCES `beds` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `in_patients_in_p_doc_id_foreign` FOREIGN KEY (`in_p_doc_id`) REFERENCES `doctors` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `lab_tests`
 --
 ALTER TABLE `lab_tests`
@@ -1126,8 +1268,14 @@ ALTER TABLE `lab_tests`
 -- Constraints for table `prescriptions`
 --
 ALTER TABLE `prescriptions`
-  ADD CONSTRAINT `prescriptions_prescription_doc_id_foreign` FOREIGN KEY (`prescription_doc_id`) REFERENCES `doctors` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `prescriptions_prescription_p_id_foreign` FOREIGN KEY (`prescription_p_id`) REFERENCES `out_patients` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `prescriptions_prescription_doc_id_foreign` FOREIGN KEY (`prescription_doc_id`) REFERENCES `doctors` (`id`);
+
+--
+-- Constraints for table `prescription__medicines`
+--
+ALTER TABLE `prescription__medicines`
+  ADD CONSTRAINT `prescription__medicines_prescription_id_foreign` FOREIGN KEY (`prescription_id`) REFERENCES `prescriptions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `prescription__medicines_prescription_medicine_id_foreign` FOREIGN KEY (`prescription_medicine_id`) REFERENCES `medicines` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

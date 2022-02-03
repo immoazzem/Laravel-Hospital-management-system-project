@@ -26,9 +26,12 @@ class PrescriptionController extends Controller
         $InPatients = InPatient::all();
         $Doctors = Doctors::all();
         $Medicines = Medicine::all();
+
         $Prescriptions = Prescription::all();
-        $Prescription_Medicines = Prescription_Medicines::all();
         
+        $Prescription_Medicines = Prescription_Medicines::all();
+       // dd($Prescription_Medicines);
+
         return view('backend/prescription/prescription', compact('Prescriptions', 'Prescription_Medicines', 'OutPatients', 'InPatients', 'Doctors', 'Medicines'));
     }
 

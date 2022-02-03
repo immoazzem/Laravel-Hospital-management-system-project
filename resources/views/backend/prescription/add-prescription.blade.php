@@ -56,9 +56,7 @@
                                     <label>Patient Name</label>
                                     <select class="form-control" name="prescription_p_id" id="prescription_p_id" required>
                                         <option value="" selected disabled>--Chose Patient--</option>
-                                        @foreach ($OutPatients as $OutPatient)
-                                            <option value="{{ $OutPatient->id }}">{{ $OutPatient->out_p_name }}</option>
-                                        @endforeach
+                                        
                                     </select>
                                     @error('prescription_p_id')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -144,8 +142,6 @@
             }
         });
         $(document).ready(function() {
-
-
             $('#Patient_select_id').on('change', function(e) {
                 var patient_type = e.target.value;
                 //alert(Medicine_id);
@@ -156,32 +152,22 @@
                         dataType: "json",
                         success: function(data) {
                              $('select[name="prescription_p_id"]').empty();
-                            $.each(data, function(key, value) {
-    
-                                if(value.out_p_name){
-                                    
+                            $.each(data, function(key, value) {    
+                                if(value.out_p_name){                                   
                                         $('select[name="prescription_p_id"]').append(
                                             ' <option value="' + value.out_p_id + '">' + value.out_p_name + '</option>'
-                                        )
-                
-                                } else if(value.in_p_name){
-                                    
-                                
+                                        )                
+                                } else if(value.in_p_name){                                                               
                                         $('select[name="prescription_p_id"]').append(
-                                            ' <option value="' + value.id + '">' + value.in_p_name + '</option>'
+                                            ' <option value="' + value.id_p_s + '">' + value.in_p_name + '</option>'
                                         )
-
                                 }
-
                             });
                          }
                     });
                 } else {
                     alert('Patient Type Not Found');
                 }
-
-
-
             });
 
         });
